@@ -2,6 +2,8 @@ package student;
 
 import game.EscapeState;
 import game.ExplorationState;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Explorer {
 
@@ -36,7 +38,19 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void explore(ExplorationState state) {
-        //TODO:
+    	long next = state.getCurrentLocation();
+    	List<Long> visited = new ArrayList<Long>();
+    	while(state.getDistanceToTarget() != 0)  {
+    		for (game.NodeStatus neighbour : state.getNeighbours()) {        		
+    			next = neighbour.getId();
+    			if (!visited.contains(next)) {
+    				break;
+    			}
+        	}
+        	visited.add(state.getCurrentLocation());
+        	state.moveTo(next);
+        }
+        return;
     }
 
     /**
