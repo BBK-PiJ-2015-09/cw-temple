@@ -70,7 +70,6 @@ public class MazePanel extends JPanel {
 
         //Load content
         try {
-        	System.out.println(PATH_PATH);
             path = ImageIO.read(new File(PATH_PATH));
             wall = ImageIO.read(new File(WALL_PATH));
             orb = ImageIO.read(new File(ORB_PATH));
