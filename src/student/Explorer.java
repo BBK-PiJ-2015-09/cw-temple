@@ -1,9 +1,9 @@
 package student;
 
+import student.MyNode;
 import game.EscapeState;
 import game.ExplorationState;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Explorer {
 
@@ -38,19 +38,29 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void explore(ExplorationState state) {
-    	long next = state.getCurrentLocation();
-    	List<Long> visited = new ArrayList<Long>();
-    	while(state.getDistanceToTarget() != 0)  {
-    		for (game.NodeStatus neighbour : state.getNeighbours()) {        		
-    			next = neighbour.getId();
-    			if (!visited.contains(next)) {
-    				break;
-    			}
+
+    	// create the root node
+    	MyNode node = new MyNode(state.getCurrentLocation());
+    	
+        while(state.getDistanceToTarget() != 0)  {
+
+        	// mark as visited
+        	node.setVisited();
+
+        	// add any new neighbour(s) as connected nodes
+        	node.addNeighbours(state.getNeighbours());
+
+        	while (node.getVisited() == true) {
+            	// move towards the next unvisited node on the board
+        		state.moveTo(node.getNext());
+        		// move to the current node on my tree
+        		node = node.getNode(state.getCurrentLocation());
         	}
-        	visited.add(state.getCurrentLocation());
-        	state.moveTo(next);
+        	
         }
+        
         return;
+
     }
 
     /**
@@ -80,3 +90,4 @@ public class Explorer {
         //TODO: Escape from the cavern before time runs out
     }
 }
+
