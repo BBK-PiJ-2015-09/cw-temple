@@ -1,4 +1,4 @@
-// package student;
+package student;
 
 /**
   * A MyNode is a location on our explorer's mental map of the Cavern.
@@ -21,12 +21,12 @@ public interface MyNode {
 	boolean getVisited();
 
 	/**
-	 * Add any neighbours (which do not already exist) to the tree.
+	 * Add any neighbours (which do not already exist) to the node.
    	 *
-   	 * @param neighbours the neighbours to be checked and added if new
+   	 * @param neighbours the ids of the neighbours to be checked and added if new
   	 * @throws NullPointerException if neighbours is null
 	 */
-	// void addNeighbours(Collection<NodeStatus> neighbours);
+	 void addNeighbours(long[] neighbours);
 
 	/**
 	 * Get a MyNode by its ID.

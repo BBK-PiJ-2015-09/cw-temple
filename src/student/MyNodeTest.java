@@ -27,4 +27,11 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 
+	@Test
+	public void testsAddNeighbours() {
+		MyNode node = new MyNodeImpl(1);
+		long[] neighbours = {2, 3, 4};
+		node.addNeighbours(neighbours);
+	}
+	
 }
