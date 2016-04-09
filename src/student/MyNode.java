@@ -18,7 +18,7 @@ public interface MyNode {
 	 *
 	 * @return a boolean, true if visited, false otherwise.
 	 */
-	// boolean getVisited();
+	boolean getVisited();
 
 	/**
 	 * Add any neighbours (which do not already exist) to the tree.
