@@ -17,4 +17,14 @@ public class MyNodeTest {
 		boolean output = node.getVisited();
 		assertEquals(expected, output);
 	}
+
+	@Test
+	public void testsSetVisited() {
+		MyNode node = new MyNodeImpl(1);
+		node.setVisited();
+		boolean expected = true;
+		boolean output = node.getVisited();
+		assertEquals(expected, output);
+	}
+
 }
