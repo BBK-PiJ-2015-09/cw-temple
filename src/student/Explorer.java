@@ -40,7 +40,7 @@ public class Explorer {
     public void explore(ExplorationState state) {
 
     	// create the root node
-    	MyNode node = new MyNode(state.getCurrentLocation());
+    	MyNode node = new MyNodeImpl(state.getCurrentLocation());
 
     	// add any neighbour(s) as connected nodes
     	node.addNeighbours(state.getNeighbours());
