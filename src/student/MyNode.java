@@ -11,7 +11,7 @@ public interface MyNode {
 	/**
 	 * Set this node to visited. Cannot be undone.
 	 */
-	// void setVisited();
+	 void setVisited();
 
 	/**
 	 * Returns whether this node has been visited.
