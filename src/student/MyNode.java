@@ -1,3 +1,5 @@
+// package student;
+
 /**
   * A MyNode is a location on our explorer's mental map of the Cavern.
   *
@@ -9,14 +11,14 @@ public interface MyNode {
 	/**
 	 * Set this node to visited. Cannot be undone.
 	 */
-	void setVisited();
+	// void setVisited();
 
 	/**
 	 * Returns whether this node has been visited.
 	 *
 	 * @return a boolean, true if visited, false otherwise.
 	 */
-	boolean getVisited();
+	// boolean getVisited();
 
 	/**
 	 * Add any neighbours (which do not already exist) to the tree.
@@ -24,7 +26,7 @@ public interface MyNode {
    	 * @param neighbours the neighbours to be checked and added if new
   	 * @throws NullPointerException if neighbours is null
 	 */
-	void addNeighbours(Collection<NodeStatus> neighbours);
+	// void addNeighbours(Collection<NodeStatus> neighbours);
 
 	/**
 	 * Get a MyNode by its ID.
@@ -35,7 +37,7 @@ public interface MyNode {
    	 * @throws IllegalArgumentException if MyNode is not found (I always expect to find it,
 	 *			something is wrong if not)
 	 */
-	MyNode getNode(long id);
+	// MyNode getNode(long id);
 
 	/**
 	 * Get the ID of the next Node to move to.
@@ -45,5 +47,5 @@ public interface MyNode {
    	 * @throws NoSuchElementException if next node is not found (I always expect to find it,
 	 *			something is wrong if not)
 	 */
-	long getNext();
+	// long getNext();
 }
