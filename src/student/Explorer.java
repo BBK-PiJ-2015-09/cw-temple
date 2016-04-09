@@ -41,14 +41,14 @@ public class Explorer {
 
     	// create the root node
     	MyNode node = new MyNode(state.getCurrentLocation());
-    	
+
+    	// add any neighbour(s) as connected nodes
+    	node.addNeighbours(state.getNeighbours());
+
         while(state.getDistanceToTarget() != 0)  {
 
         	// mark as visited
         	node.setVisited();
-
-        	// add any new neighbour(s) as connected nodes
-        	node.addNeighbours(state.getNeighbours());
 
         	while (node.getVisited() == true) {
             	// move towards the next unvisited node on the board
@@ -56,9 +56,12 @@ public class Explorer {
         		// move to the current node on my tree
         		node = node.getNode(state.getCurrentLocation());
         	}
-        	
+
+        	// add any new neighbour(s) as connected nodes
+        	node.addNeighbours(state.getNeighbours());
+
         }
-        
+
         return;
 
     }
