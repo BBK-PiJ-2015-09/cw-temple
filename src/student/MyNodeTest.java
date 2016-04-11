@@ -70,11 +70,13 @@ public class MyNodeTest {
 	@Test
 	public void testsGetNextUnvisited() {
 		MyNode node = new MyNodeImpl(1);
-		long[] neighbours = {2, 3};
-		node.getNode(2).setVisited();
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode node3 = new MyNodeImpl(3);
+		node2.setVisited();
+		MyNode[] neighbours = {node2, node3};
 		node.addNeighbours(neighbours);
 		long expected = 3;
-		long output = node.getNext().getId();
+		long output = node.getNext();
 		assertEquals(expected, output);
 	}
 }

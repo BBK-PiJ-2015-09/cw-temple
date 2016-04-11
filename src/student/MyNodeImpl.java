@@ -35,6 +35,11 @@ public class MyNodeImpl implements MyNode {
 	}
 	
 	public long getNext() {
-		return neighbours[0].getId();
+		for(MyNode neighbour : neighbours) {
+			if (neighbour.getVisited() == false) {
+				return neighbour.getId();
+			}
+		}
+		return 0;
 	}
 }
