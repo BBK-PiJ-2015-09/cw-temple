@@ -6,11 +6,6 @@ import static org.junit.Assert.*;
 public class MyNodeTest {
 
 	@Test
-	public void testsConstructor() {
-		MyNode node = new MyNodeImpl(1);
-	}
-
-	@Test
 	public void testsGetId() {
 		MyNode node = new MyNodeImpl(1);
 		long expected = 1;
