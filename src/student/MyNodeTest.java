@@ -34,16 +34,6 @@ public class MyNodeTest {
 		boolean output = node.getVisited();
 		assertEquals(expected, output);
 	}
-
-	@Test
-	public void testsAddNeighbours() {
-		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		MyNode node3 = new MyNodeImpl(3);
-		MyNode node4 = new MyNodeImpl(4);
-		MyNode[] neighbours = {node2, node3, node4};
-		node.addNeighbours(neighbours);
-	}
 	
 	@Test
 	public void testsGetNode() {
