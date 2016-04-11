@@ -30,10 +30,10 @@ public interface MyNode {
 	/**
 	 * Add any neighbours (which do not already exist) to the node.
    	 *
-   	 * @param neighbours the ids of the neighbours to be checked and added if new
+   	 * @param neighbours the neighbours to be checked and added if new
   	 * @throws NullPointerException if neighbours is null
 	 */
-	 void addNeighbours(long[] neighbours);
+	 void addNeighbours(MyNode[] neighbours);
 
 	/**
 	 * Get a MyNode by its ID.

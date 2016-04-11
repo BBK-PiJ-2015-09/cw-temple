@@ -3,7 +3,7 @@ package student;
 public class MyNodeImpl implements MyNode {
 	private long id;
 	private boolean visited;
-	private long[] neighbours;
+	private MyNode[] neighbours;
 	
 	MyNodeImpl(long id) {
 		this.id = id;
@@ -21,11 +21,20 @@ public class MyNodeImpl implements MyNode {
 		visited = true;
 	}
 	
-	public void addNeighbours(long[] neighbours) {
+	public void addNeighbours(MyNode[] neighbours) {
 		this.neighbours = neighbours;
 	}
 	
+	public MyNode getNode(long id) {
+		for(MyNode neighbour : neighbours) {
+			if (neighbour.getId() == id) {
+				return neighbour;
+			}
+		}
+		return null;
+	}
+	
 	public long getNext() {
-		return neighbours[0];
+		return neighbours[0].getId();
 	}
 }

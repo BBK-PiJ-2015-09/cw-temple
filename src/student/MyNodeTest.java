@@ -38,14 +38,18 @@ public class MyNodeTest {
 	@Test
 	public void testsAddNeighbours() {
 		MyNode node = new MyNodeImpl(1);
-		long[] neighbours = {2, 3, 4};
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode node3 = new MyNodeImpl(3);
+		MyNode node4 = new MyNodeImpl(4);
+		MyNode[] neighbours = {node2, node3, node4};
 		node.addNeighbours(neighbours);
 	}
 	
 	@Test
 	public void testsGetNext() {
 		MyNode node = new MyNodeImpl(1);
-		long[] neighbours = {2};
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode[] neighbours = {node2};
 		node.addNeighbours(neighbours);
 		long expected = 2;
 		long output = node.getNext();
@@ -55,7 +59,8 @@ public class MyNodeTest {
 	@Test
 	public void testsGetNode() {
 		MyNode node = new MyNodeImpl(1);
-		long[] neighbours = {2};
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode[] neighbours = {node2};
 		node.addNeighbours(neighbours);
 		long expected = 2;
 		long output = node.getNode(2).getId();
