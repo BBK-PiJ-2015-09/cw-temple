@@ -46,6 +46,15 @@ public class MyNodeTest {
 		long output = node.getNode(2).getId();
 		assertEquals(expected, output);
 	}
+
+	@Test(expected= IllegalArgumentException.class)
+	public void testsGetNodeNotFound() {
+		MyNode node = new MyNodeImpl(1);
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode[] neighbours = {node2};
+		node.addNeighbours(neighbours);
+		node.getNode(3);
+	}
 	
 	@Test
 	public void testsGetNext() {
