@@ -16,16 +16,16 @@ public interface MyNode {
 	long getId();
 	
 	/**
-	 * Set this node to visited. Cannot be undone.
-	 */
-	 void setVisited();
-
-	/**
 	 * Returns whether this node has been visited.
 	 *
 	 * @return a boolean, true if visited, false otherwise.
 	 */
 	boolean getVisited();
+	
+	/**
+	 * Set this node to visited. Cannot be undone.
+	 */
+	 void setVisited();
 
 	/**
 	 * Add any neighbours (which do not already exist) to the node.
