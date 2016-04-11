@@ -22,7 +22,11 @@ public class MyNodeImpl implements MyNode {
 	}
 	
 	public void addNeighbours(MyNode[] neighbours) {
-		this.neighbours = neighbours;
+		if (neighbours == null) {
+			throw new NullPointerException();
+		} else {
+			this.neighbours = neighbours;
+		}
 	}
 	
 	public MyNode getNode(long id) {
