@@ -34,4 +34,13 @@ public class MyNodeTest {
 		node.addNeighbours(neighbours);
 	}
 	
+	@Test
+	public void testsGetNext() {
+		MyNode node = new MyNodeImpl(1);
+		node.addNeighbours({2});
+		long expected = 2;
+		long output = node.getNext();
+		assertEquals(expected, output);
+	}
+	
 }

@@ -47,5 +47,5 @@ public interface MyNode {
    	 * @throws NoSuchElementException if next node is not found (I always expect to find it,
 	 *			something is wrong if not)
 	 */
-	// long getNext();
+	 long getNext();
 }
