@@ -34,12 +34,12 @@ public class MyNodeImpl implements MyNode {
 		return null;
 	}
 	
-	public long getNext() {
+	public MyNode getNext() {
 		for(MyNode neighbour : neighbours) {
 			if (neighbour.getVisited() == false) {
-				return neighbour.getId();
+				return neighbour;
 			}
 		}
-		return 0;
+		return null;
 	}
 }

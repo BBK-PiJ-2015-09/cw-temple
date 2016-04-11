@@ -51,10 +51,10 @@ public class Explorer {
         	node.setVisited();
 
         	while (node.getVisited() == true) {
+        		// get the next move towards next unvisited node on the board
+        		node = node.getNext();
             	// move towards the next unvisited node on the board
-        		state.moveTo(node.getNext());
-        		// move to the current node on my tree
-        		node = node.getNode(state.getCurrentLocation());
+        		state.moveTo(node.getId());
         	}
 
         	// add any new neighbour(s) as connected nodes

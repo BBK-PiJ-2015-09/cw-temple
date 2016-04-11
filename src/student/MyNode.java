@@ -50,9 +50,9 @@ public interface MyNode {
 	 * Get the ID of the next Node to move to.
 	 * This node should on the route to the next unvisited node.
    	 *
-	 * @return the id of the next node to move to.
+	 * @return the next node to move to.
    	 * @throws NoSuchElementException if next node is not found (I always expect to find it,
 	 *			something is wrong if not)
 	 */
-	 long getNext();
+	 MyNode getNext();
 }

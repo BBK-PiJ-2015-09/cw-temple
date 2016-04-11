@@ -53,7 +53,7 @@ public class MyNodeTest {
 		MyNode[] neighbours = {node2};
 		node.addNeighbours(neighbours);
 		long expected = 2;
-		long output = node.getNext();
+		long output = node.getNext().getId();
 		assertEquals(expected, output);
 	}
 	
@@ -66,7 +66,7 @@ public class MyNodeTest {
 		MyNode[] neighbours = {node2, node3};
 		node.addNeighbours(neighbours);
 		long expected = 3;
-		long output = node.getNext();
+		long output = node.getNext().getId();
 		assertEquals(expected, output);
 	}
 }
