@@ -52,4 +52,14 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test
+	public void testsGetNode() {
+		MyNode node = new MyNodeImpl(1);
+		long[] neighbours = {2};
+		node.addNeighbours(neighbours);
+		long expected = 2;
+		long output = node.getNode(2).getId();
+		assertEquals(expected, output);
+	}
+	
 }

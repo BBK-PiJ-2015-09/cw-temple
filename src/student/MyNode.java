@@ -44,7 +44,7 @@ public interface MyNode {
    	 * @throws IllegalArgumentException if MyNode is not found (I always expect to find it,
 	 *			something is wrong if not)
 	 */
-	// MyNode getNode(long id);
+	MyNode getNode(long id);
 
 	/**
 	 * Get the ID of the next Node to move to.
