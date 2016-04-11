@@ -1,11 +1,16 @@
 package student;
 
 public class MyNodeImpl implements MyNode {
+	private long id;
 	private boolean visited;
 	private long[] neighbours;
 	
 	MyNodeImpl(long id) {
-
+		this.id = id;
+	}
+	
+	public long getId() {
+		return id;
 	}
 	
 	public boolean getVisited() {
