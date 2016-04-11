@@ -35,7 +35,7 @@ public class MyNodeImpl implements MyNode {
 				return neighbour;
 			}
 		}
-		return null;
+		throw new IllegalArgumentException();
 	}
 	
 	public MyNode getNext() {
