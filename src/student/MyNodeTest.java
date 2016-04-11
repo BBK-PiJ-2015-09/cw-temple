@@ -11,6 +11,14 @@ public class MyNodeTest {
 	}
 
 	@Test
+	public void testsGetId() {
+		MyNode node = new MyNodeImpl(1);
+		long expected = 1;
+		long output = node.getId();
+		assertEquals(expected, output);
+	}
+	
+	@Test
 	public void testsGetVisited() {
 		MyNode node = new MyNodeImpl(1);
 		boolean expected = false;

@@ -9,6 +9,13 @@ package student;
 public interface MyNode {
 
 	/**
+	 * Returns the ID of the current node.
+	 *
+	 * @return the ID, a long.
+	 */
+	long getId();
+	
+	/**
 	 * Set this node to visited. Cannot be undone.
 	 */
 	 void setVisited();
