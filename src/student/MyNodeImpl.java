@@ -14,4 +14,8 @@ public class MyNodeImpl implements MyNode {
 	public void setVisited() {
 		visited = true;
 	}
+	
+	public void addNeighbours(long[] neighbours) {
+		
+	}
 }
