@@ -40,7 +40,6 @@ public interface MyNode {
    	 *
    	 * @param id the id of the MyNode to be returned
 	 * @return the MyNode if found
-	 * @throws NullPointerException if id is null
    	 * @throws IllegalArgumentException if MyNode is not found (I always expect to find it,
 	 *			something is wrong if not)
 	 */

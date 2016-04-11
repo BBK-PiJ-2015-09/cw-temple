@@ -46,12 +46,6 @@ public class MyNodeTest {
 		long output = node.getNode(2).getId();
 		assertEquals(expected, output);
 	}
-
-	@Test(expected= NullPointerException.class)
-	public void testsGetNodeNull() {
-		MyNode node = new MyNodeImpl(1);
-		node.getNode(null);
-	}
 	
 	@Test
 	public void testsGetNext() {
