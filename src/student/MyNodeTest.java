@@ -30,6 +30,12 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test(expected= NullPointerException.class)
+	public void testsAddNeighboursNull() {
+		MyNode node = new MyNodeImpl(1);
+		node.addNeighbours(null);
+	}
+	
 	@Test
 	public void testsGetNode() {
 		MyNode node = new MyNodeImpl(1);
