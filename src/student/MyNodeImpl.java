@@ -2,6 +2,7 @@ package student;
 
 public class MyNodeImpl implements MyNode {
 	private boolean visited;
+	private long[] neighbours;
 	
 	MyNodeImpl(long id) {
 
@@ -16,6 +17,10 @@ public class MyNodeImpl implements MyNode {
 	}
 	
 	public void addNeighbours(long[] neighbours) {
-		
+		this.neighbours = neighbours;
+	}
+	
+	public long getNext() {
+		return neighbours[0];
 	}
 }
