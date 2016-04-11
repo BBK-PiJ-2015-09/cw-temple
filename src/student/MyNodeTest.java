@@ -30,6 +30,17 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test
+	public void testsAddNeighboursDoublyLinked() {
+		MyNode node = new MyNodeImpl(1);
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode[] neighbours = {node2};
+		node.addNeighbours(neighbours);
+		long expected = 1;
+		long output = node2.getNext().getId();
+		assertEquals(expected, output);
+	}
+
 	@Test(expected= NullPointerException.class)
 	public void testsAddNeighboursNull() {
 		MyNode node = new MyNodeImpl(1);
