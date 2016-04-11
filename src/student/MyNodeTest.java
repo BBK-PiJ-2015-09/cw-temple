@@ -46,6 +46,17 @@ public class MyNodeTest {
 	}
 	
 	@Test
+	public void testsGetNode() {
+		MyNode node = new MyNodeImpl(1);
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode[] neighbours = {node2};
+		node.addNeighbours(neighbours);
+		long expected = 2;
+		long output = node.getNode(2).getId();
+		assertEquals(expected, output);
+	}
+
+	@Test
 	public void testsGetNext() {
 		MyNode node = new MyNodeImpl(1);
 		MyNode node2 = new MyNodeImpl(2);
@@ -57,14 +68,13 @@ public class MyNodeTest {
 	}
 	
 	@Test
-	public void testsGetNode() {
+	public void testsGetNextUnvisited() {
 		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		MyNode[] neighbours = {node2};
+		long[] neighbours = {2, 3};
+		node.getNode(2).setVisited();
 		node.addNeighbours(neighbours);
-		long expected = 2;
-		long output = node.getNode(2).getId();
+		long expected = 3;
+		long output = node.getNext().getId();
 		assertEquals(expected, output);
 	}
-	
 }
