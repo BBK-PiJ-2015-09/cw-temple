@@ -35,96 +35,23 @@ public class MyNodeTest {
 	@Test
 	public void testsGetNeighbours() {
 		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		MyNode node3 = new MyNodeImpl(3);
-		node.addNeighbour(node2);
-		node.addNeighbour(node3);
-		ArrayList<MyNode> expected = new ArrayList<>();
-		expected.add(node2);
-		expected.add(node3);
-		ArrayList<MyNode> output = node.getNeighbours();
-		assertEquals(expected, output);
-	}
-	
-	@Test
-	public void testsGetNeighbourIds() {
-		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		MyNode node3 = new MyNodeImpl(3);
-		node.addNeighbour(node2);
-		node.addNeighbour(node3);
+		node.addNeighbour(2);
+		node.addNeighbour(3);
 		ArrayList<Long> expected = new ArrayList<>();
 		expected.add(2L);
 		expected.add(3L);
-		ArrayList<Long> output = node.getNeighbourIds();
-		assertEquals(expected, output);
-	}
-	
-	@Test
-	public void testsAddNeighbourDoublyLinked() {
-		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		node.addNeighbour(node2);
-		MyNode expected = node;
-		MyNode output = node2.getNext();
+		ArrayList<Long> output = node.getNeighbours();
 		assertEquals(expected, output);
 	}
 
 	@Test
 	public void testsAddNeighbourOnlyOnce() {
 		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		node.addNeighbour(node2);
-		node.addNeighbour(node2);
+		node.addNeighbour(2);
+		node.addNeighbour(2);
 		long expected = 1;
-		long output = node2.getNeighbours().size();
-		assertEquals(expected, output);
-	}
-	
-	@Test(expected= NullPointerException.class)
-	public void testsAddNeighbourNull() {
-		MyNode node = new MyNodeImpl(1);
-		node.addNeighbour(null);
-	}
-	
-	@Test
-	public void testsGetNode() {
-		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		node.addNeighbour(node2);
-		long expected = 2;
-		long output = node.getNode(2).getId();
+		long output = node.getNeighbours().size();
 		assertEquals(expected, output);
 	}
 
-	@Test(expected= IllegalArgumentException.class)
-	public void testsGetNodeNotFound() {
-		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		node.addNeighbour(node2);
-		node.getNode(3);
-	}
-	
-	@Test
-	public void testsGetNext() {
-		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		node.addNeighbour(node2);
-		long expected = 2;
-		long output = node.getNext().getId();
-		assertEquals(expected, output);
-	}
-	
-	@Test
-	public void testsGetNextUnvisited() {
-		MyNode node = new MyNodeImpl(1);
-		MyNode node2 = new MyNodeImpl(2);
-		MyNode node3 = new MyNodeImpl(3);
-		node2.setVisited();
-		node.addNeighbour(node2);
-		node.addNeighbour(node3);
-		long expected = 3;
-		long output = node.getNext().getId();
-		assertEquals(expected, output);
-	}
 }

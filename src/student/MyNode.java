@@ -30,43 +30,17 @@ public interface MyNode {
 	void setVisited();
 
 	/**
-	 * Get any neighbours to the node.
-	 *
-	 * @return the neighbourhood MyNodes in an ArrayList
-	 */
-	ArrayList<MyNode> getNeighbours();
-
-	/**
 	 * Get any neighbour IDs to the node.
 	 *
 	 * @return the neighbourhood MyNode IDs in an ArrayList
 	 */
-	 ArrayList<Long> getNeighbourIds();
+	 ArrayList<Long> getNeighbours();
 	 
 	/**
-	 * Add a neighbour (if it does not already exist) to the node.
+	 * Add the id of a neighbour (if it does not already exist) to the node.
 	 *
-	 * @param neighbour the neighbour to be checked and added if new
+	 * @param id the id of the neighbour to be checked and added if new
 	 */
-	void addNeighbour(MyNode neighbour);
+	void addNeighbour(long id);
 
-	/**
-	 * Get a MyNode by its ID.
-   	 *
-   	 * @param id the id of the MyNode to be returned
-	 * @return the MyNode if found
-   	 * @throws IllegalArgumentException if MyNode is not found (I always expect to find it,
-	 *			something is wrong if not)
-	 */
-	MyNode getNode(long id);
-
-	/**
-	 * Get the ID of the next Node to move to.
-	 * This node should on the route to the next unvisited node.
-   	 *
-	 * @return the next node to move to.
-   	 * @throws NoSuchElementException if next node is not found (I always expect to find it,
-	 *			something is wrong if not)
-	 */
-	MyNode getNext();
 }
