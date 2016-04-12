@@ -1,12 +1,19 @@
 package student;
 
+import java.util.ArrayList;
+
 public class MyNodeImpl implements MyNode {
 	private long id;
 	private boolean visited;
-	private MyNode[] neighbours;
+	private ArrayList<MyNode> neighbours = new ArrayList<>();
 	
 	MyNodeImpl(long id) {
 		this.id = id;
+	}
+	
+	MyNodeImpl(long id, MyNode parent) {
+		this.id = id;
+		neighbours.add(parent);
 	}
 	
 	public long getId() {
@@ -21,11 +28,35 @@ public class MyNodeImpl implements MyNode {
 		visited = true;
 	}
 	
+	public ArrayList<MyNode> getNeighbours() {
+		return neighbours;
+	}
+	
+	public void addNeighbour(MyNode neighbour) {
+		if (neighbour == null) {
+			throw new NullPointerException();
+		} else {
+			if( !this.neighbours.contains(neighbour) ) {
+				this.neighbours.add(neighbour);
+			}
+			if( !neighbour.getNeighbours().contains(this) ) {
+				neighbour.addNeighbour(this);
+			}
+		}
+	}
+	
 	public void addNeighbours(MyNode[] neighbours) {
 		if (neighbours == null) {
 			throw new NullPointerException();
 		} else {
-			this.neighbours = neighbours;
+			for(MyNode neighbour : neighbours) {
+				if( !this.neighbours.contains(neighbour) ) {
+					this.neighbours.add(neighbour);
+				}
+				if( !neighbour.getNeighbours().contains(this) ) {
+					neighbour.addNeighbour(this);
+				}
+			}
 		}
 	}
 	
@@ -44,6 +75,6 @@ public class MyNodeImpl implements MyNode {
 				return neighbour;
 			}
 		}
-		return null;
+		return neighbours.get(0);
 	}
 }

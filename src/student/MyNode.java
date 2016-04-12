@@ -1,5 +1,7 @@
 package student;
 
+import java.util.ArrayList;
+
 /**
   * A MyNode is a location on our explorer's mental map of the Cavern.
   *
@@ -27,6 +29,20 @@ public interface MyNode {
 	 */
 	 void setVisited();
 
+	/**
+	 * Get any neighbours to the node.
+	 *
+	 * @return the neighbourhood MyNodes in an ArrayList
+	 */
+	 ArrayList<MyNode> getNeighbours();
+	
+	/**
+	 * Add a neighbour (if it does not already exist) to the node.
+	 *
+	 * @param neighbour the neighbour to be checked and added if new
+	 */
+	 void addNeighbour(MyNode neighbour);
+	 
 	/**
 	 * Add any neighbours (which do not already exist) to the node.
    	 *
