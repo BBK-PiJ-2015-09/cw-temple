@@ -8,6 +8,7 @@ public class MyCavernImpl implements MyCavern {
 	private ArrayList<MyNode> nodes = new ArrayList<>();
 	private long location;
 	private Stack<Long> history = new Stack();
+	private boolean retracing = false;
 	
 	MyCavernImpl() {}
 	
@@ -31,7 +32,9 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	public void setLocation(long location) {
-		history.push(this.location);
+		if (!retracing) {
+			history.push(this.location);
+		}
 		this.location = location;
 	}
 	
@@ -49,6 +52,9 @@ public class MyCavernImpl implements MyCavern {
 		for(long id : neighbours) {
 			neighbour = getNode(id);
 			if(neighbour.getVisited() == false) {
+				if(retracing) {
+					retracing = false;
+				}
 				return id;
 			}
 		}
@@ -56,6 +62,7 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	private long getLast() {
+		retracing = true;
 		return history.pop();
 	}
 
