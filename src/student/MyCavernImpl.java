@@ -1,6 +1,7 @@
 package student;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class MyCavernImpl implements MyCavern {
 	private ArrayList<MyNode> nodes = new ArrayList<>();
@@ -48,6 +49,6 @@ public class MyCavernImpl implements MyCavern {
 				return id;
 			}
 		}
-		return 0;
+		throw new NoSuchElementException();
 	}
 }
