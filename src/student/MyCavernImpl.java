@@ -60,7 +60,13 @@ public class MyCavernImpl implements MyCavern {
 			if(retracing) {
 				retracing = false;
 			}
-			return options.get(0).getId();
+			MyNode output = options.get(0);
+			for(MyNode option : options) {
+				if(option.getDistance() < output.getDistance()) {
+					output = option;
+				}
+			}
+			return output.getId();
 		} else {
 			return getLast();
 		}
