@@ -9,7 +9,7 @@ public class MyNodeTest {
 
 	@Test
 	public void testsGetId() {
-		MyNode node = new MyNodeImpl(1);
+		MyNode node = new MyNodeImpl(1, 1);
 		long expected = 1;
 		long output = node.getId();
 		assertEquals(expected, output);
@@ -17,7 +17,7 @@ public class MyNodeTest {
 	
 	@Test
 	public void testsGetVisited() {
-		MyNode node = new MyNodeImpl(1);
+		MyNode node = new MyNodeImpl(1, 1);
 		boolean expected = false;
 		boolean output = node.getVisited();
 		assertEquals(expected, output);
@@ -25,7 +25,7 @@ public class MyNodeTest {
 
 	@Test
 	public void testsSetVisited() {
-		MyNode node = new MyNodeImpl(1);
+		MyNode node = new MyNodeImpl(1, 1);
 		node.setVisited();
 		boolean expected = true;
 		boolean output = node.getVisited();
@@ -33,8 +33,16 @@ public class MyNodeTest {
 	}
 	
 	@Test
+	public void testsGetDistance() {
+		MyNode node = new MyNodeImpl(1, 2);
+		long expected = 2;
+		long output = node.getDistance();
+		assertEquals(expected, output);
+	}
+	
+	@Test
 	public void testsGetNeighbours() {
-		MyNode node = new MyNodeImpl(1);
+		MyNode node = new MyNodeImpl(1, 1);
 		node.addNeighbour(2);
 		node.addNeighbour(3);
 		ArrayList<Long> expected = new ArrayList<>();
@@ -46,7 +54,7 @@ public class MyNodeTest {
 
 	@Test
 	public void testsAddNeighbourOnlyOnce() {
-		MyNode node = new MyNodeImpl(1);
+		MyNode node = new MyNodeImpl(1, 1);
 		node.addNeighbour(2);
 		node.addNeighbour(2);
 		long expected = 1;

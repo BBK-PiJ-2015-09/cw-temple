@@ -30,6 +30,13 @@ public interface MyNode {
 	void setVisited();
 
 	/**
+	 * Returns the (straight-line) distance of the current node from the goal.
+	 *
+	 * @return the distance, a long.
+	 */
+	long getDistance();
+	
+	/**
 	 * Get any neighbour IDs to the node.
 	 *
 	 * @return the neighbourhood MyNode IDs in an ArrayList
