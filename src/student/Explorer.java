@@ -39,34 +39,30 @@ public class Explorer {
      */
     public void explore(ExplorationState state) {
 
-    	// create the root node
-    	MyNode node = new MyNodeImpl(state.getCurrentLocation());
-    	MyNode newNode;
-
-        while(state.getDistanceToTarget() != 0)  {
-        	System.out.println("Location ID:" + node.getId());
-        	System.out.println("Location:" + node);
-        	
-        	// add any new neighbour(s) as connected nodes
-        	for (game.NodeStatus neighbour : state.getNeighbours()) {
-        		newNode = new MyNodeImpl(neighbour.getId());
-        		node.addNeighbour(newNode);
-        	}
-        	
+    	// create the cavern
+    	MyCavern cavern = new MyCavernImpl();
+    	
+		// add the node to the cavern
+		cavern.addNode(state.getCurrentLocation());
+		MyNode node = cavern.getNode(state.getCurrentLocation());
+    	
+    	while(state.getDistanceToTarget() != 0)  {
         	// mark as visited
         	node.setVisited();
-
+    				
+        	// add any new neighbours to the cavern and the node
+        	for (game.NodeStatus neighbour : state.getNeighbours()) {
+        		cavern.addNode(neighbour.getId());
+        		node.addNeighbour(neighbour.getId());
+        	}
+ 
         	// get the next move towards next unvisited node on the board
         	node = node.getNext();
-            System.out.println("Next ID:" + node.getId());
-            System.out.println("Next:" + node);
-
+        	
             // move towards the next unvisited node on the board
-            System.out.println("Moving!!");
         	state.moveTo(node.getId());
-
-        }
-
+    	}
+ 
         return;
 
     }
