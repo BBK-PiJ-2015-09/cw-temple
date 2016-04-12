@@ -52,6 +52,17 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 
+	@Test
+	public void testsAddNeighbourOnlyOnce() {
+		MyNode node = new MyNodeImpl(1);
+		MyNode node2 = new MyNodeImpl(2);
+		node.addNeighbour(node2);
+		node.addNeighbour(node2);
+		long expected = 1;
+		long output = node2.getNeighbours().size();
+		assertEquals(expected, output);
+	}
+	
 	@Test(expected= NullPointerException.class)
 	public void testsAddNeighbourNull() {
 		MyNode node = new MyNodeImpl(1);
