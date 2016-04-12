@@ -45,6 +45,18 @@ public class MyNodeTest {
 		ArrayList<MyNode> output = node.getNeighbours();
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsGetNeighbourIds() {
+		MyNode node = new MyNodeImpl(1);
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode node3 = new MyNodeImpl(3);
+		node.addNeighbour(node2);
+		node.addNeighbour(node3);
+		ArrayList<Long> expected = new ArrayList<>();
+		expected.add(2L);
+		expected.add(3L);
+		ArrayList<Long> output = node.getNeighbourIds();
 		assertEquals(expected, output);
 	}
 	
@@ -53,8 +65,8 @@ public class MyNodeTest {
 		MyNode node = new MyNodeImpl(1);
 		MyNode node2 = new MyNodeImpl(2);
 		node.addNeighbour(node2);
-		long expected = 1;
-		long output = node2.getNext().getId();
+		MyNode expected = node;
+		MyNode output = node2.getNext();
 		assertEquals(expected, output);
 	}
 
