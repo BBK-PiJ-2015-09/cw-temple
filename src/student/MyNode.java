@@ -27,14 +27,14 @@ public interface MyNode {
 	/**
 	 * Set this node to visited. Cannot be undone.
 	 */
-	 void setVisited();
+	void setVisited();
 
 	/**
 	 * Get any neighbours to the node.
 	 *
 	 * @return the neighbourhood MyNodes in an ArrayList
 	 */
-	 ArrayList<MyNode> getNeighbours();
+	ArrayList<MyNode> getNeighbours();
 
 	/**
 	 * Get any neighbour IDs to the node.
@@ -48,7 +48,7 @@ public interface MyNode {
 	 *
 	 * @param neighbour the neighbour to be checked and added if new
 	 */
-	 void addNeighbour(MyNode neighbour);
+	void addNeighbour(MyNode neighbour);
 
 	/**
 	 * Get a MyNode by its ID.
@@ -68,5 +68,5 @@ public interface MyNode {
    	 * @throws NoSuchElementException if next node is not found (I always expect to find it,
 	 *			something is wrong if not)
 	 */
-	 MyNode getNext();
+	MyNode getNext();
 }
