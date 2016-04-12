@@ -114,4 +114,23 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test public void testsGetNextChoosesLeastDistance() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 3);
+		cavern.getNode(1).setVisited();
+		cavern.getNode(1).addNeighbour(2);
+		cavern.getNode(1).addNeighbour(3);
+		cavern.getNode(1).addNeighbour(4);
+		cavern.setLocation(1);
+		cavern.addNode(2, 2);
+		cavern.getNode(2).addNeighbour(1);
+		cavern.addNode(3, 2);
+		cavern.getNode(3).addNeighbour(1);
+		cavern.addNode(4, 1);
+		cavern.getNode(4).addNeighbour(1);
+		long expected = 4;
+		long output = cavern.getNext();
+		assertEquals(expected, output);
+	}
+	
 }
