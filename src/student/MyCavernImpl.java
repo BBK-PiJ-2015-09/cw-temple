@@ -5,11 +5,14 @@ import java.util.ArrayList;
 public class MyCavernImpl implements MyCavern {
 	private ArrayList<MyNode> nodes = new ArrayList<>();
 	
-	MyCavernImpl() {
-		
-	}
+	MyCavernImpl() {}
 	
 	public void addNode(long id) {
+		for(MyNode node : nodes) {
+			if(node.getId() == id) {
+				return;
+			}
+		}
 		MyNode node = new MyNodeImpl(id);
 		nodes.add(node);
 	}
