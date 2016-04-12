@@ -62,7 +62,9 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	private long getLast() {
-		retracing = true;
+		if(!retracing) {
+			retracing = true;
+		}
 		return history.pop();
 	}
 
