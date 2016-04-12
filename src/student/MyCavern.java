@@ -11,8 +11,9 @@ public interface MyCavern {
 	 * Adds a node to the cavern, if it is not already present.
 	 *
 	 * @param id, the id of the node to add.
+	 * @param distance, the (straight-line) distance of the node from the goal.
 	 */
-	void addNode(long id);
+	void addNode(long id, long distance);
 	
 	/**
 	 * Returns a node by its ID.
