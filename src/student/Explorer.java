@@ -41,32 +41,29 @@ public class Explorer {
 
     	// create the root node
     	MyNode node = new MyNodeImpl(state.getCurrentLocation());
-    	// add any neighbour(s) as connected nodes
     	MyNode newNode;
 
         while(state.getDistanceToTarget() != 0)  {
-        	System.out.println("Location:" + node.getId());
+        	System.out.println("Location ID:" + node.getId());
+        	System.out.println("Location:" + node);
         	
         	// add any new neighbour(s) as connected nodes
         	for (game.NodeStatus neighbour : state.getNeighbours()) {
         		newNode = new MyNodeImpl(neighbour.getId());
         		node.addNeighbour(newNode);
-            	System.out.println("Neighbour:" + neighbour.getId());
         	}
         	
         	// mark as visited
         	node.setVisited();
-        	System.out.println("This visited?:" + node.getVisited());
 
-        	while (node.getVisited() == true) {
-        		// get the next move towards next unvisited node on the board
-        		node = node.getNext();
-            	System.out.println("Next:" + node.getId());
-            	System.out.println("Next visited?:" + node.getVisited());
+        	// get the next move towards next unvisited node on the board
+        	node = node.getNext();
+            System.out.println("Next ID:" + node.getId());
+            System.out.println("Next:" + node);
 
-            	// move towards the next unvisited node on the board
-        		state.moveTo(node.getId());
-        	}
+            // move towards the next unvisited node on the board
+            System.out.println("Moving!!");
+        	state.moveTo(node.getId());
 
         }
 
