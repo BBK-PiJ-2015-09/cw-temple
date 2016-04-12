@@ -48,17 +48,22 @@ public class MyCavernImpl implements MyCavern {
 	
 	public long getNext() {
 		ArrayList<Long> neighbours = getNode(location).getNeighbours();
+		ArrayList<MyNode> options = new ArrayList<>();
 		MyNode neighbour;
 		for(long id : neighbours) {
 			neighbour = getNode(id);
 			if(neighbour.getVisited() == false) {
-				if(retracing) {
-					retracing = false;
-				}
-				return id;
+				options.add(neighbour);
 			}
 		}
-		return getLast();
+		if(!options.isEmpty()) {
+			if(retracing) {
+				retracing = false;
+			}
+			return options.get(0).getId();
+		} else {
+			return getLast();
+		}
 	}
 	
 	private long getLast() {
