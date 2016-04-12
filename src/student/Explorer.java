@@ -57,10 +57,11 @@ public class Explorer {
         	}
  
         	// get the next move towards the next unvisited node on the board
-        	node = cavern.getNext();
+        	node = cavern.getNode(cavern.getNext());
         	
             // move towards the next unvisited node on the board
         	state.moveTo(node.getId());
+        	cavern.setLocation(node.getId());
     	}
  
         return;

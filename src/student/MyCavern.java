@@ -51,6 +51,8 @@ public interface MyCavern {
 	 * Returns the id of the next node to move to, unvisited if possible.
 	 *
 	 * @return the next id to move to.
+	 * @throws IllegalArgumentException if id is not found (I always expect to find it,
+	 * something is wrong if not)
 	 */
 	long getNext();
 	
