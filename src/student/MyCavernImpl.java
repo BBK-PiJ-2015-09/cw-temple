@@ -2,10 +2,12 @@ package student;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.util.Stack;
 
 public class MyCavernImpl implements MyCavern {
 	private ArrayList<MyNode> nodes = new ArrayList<>();
 	private long location;
+	private Stack<Long> history = new Stack();
 	
 	MyCavernImpl() {}
 	
@@ -29,6 +31,7 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	public void setLocation(long location) {
+		history.push(this.location);
 		this.location = location;
 	}
 	
@@ -49,6 +52,11 @@ public class MyCavernImpl implements MyCavern {
 				return id;
 			}
 		}
-		throw new NoSuchElementException();
+		return getLast();
 	}
+	
+	private long getLast() {
+		return history.pop();
+	}
+
 }
