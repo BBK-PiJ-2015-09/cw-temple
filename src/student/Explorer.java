@@ -45,11 +45,14 @@ public class Explorer {
 		// add the node to the cavern
 		cavern.addNode(state.getCurrentLocation());
 		MyNode node = cavern.getNode(state.getCurrentLocation());
-    	
+		
     	while(state.getDistanceToTarget() != 0)  {
+        	// set location
+    		cavern.setLocation(node.getId());
+     		
         	// mark as visited
         	node.setVisited();
-    				
+        	
         	// add any new neighbours to the cavern and the node
         	for (game.NodeStatus neighbour : state.getNeighbours()) {
         		cavern.addNode(neighbour.getId());
@@ -61,7 +64,6 @@ public class Explorer {
         	
             // move towards the next unvisited node on the board
         	state.moveTo(node.getId());
-        	cavern.setLocation(node.getId());
     	}
  
         return;
