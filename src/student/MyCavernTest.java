@@ -3,6 +3,8 @@ package student;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.util.NoSuchElementException;
+
 public class MyCavernTest {
 	
 	@Test
@@ -48,4 +50,13 @@ public class MyCavernTest {
 		long output = cavern.getNext();
 		assertEquals(expected, output);
 	}
+	
+	@Test(expected= NoSuchElementException.class)
+	public void testsGetNextNotPresent() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		cavern.setLocation(1);
+		cavern.getNext();
+	}
+
 }
