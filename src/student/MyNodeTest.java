@@ -3,6 +3,8 @@ package student;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 public class MyNodeTest {
 
 	@Test
@@ -37,8 +39,12 @@ public class MyNodeTest {
 		MyNode node3 = new MyNodeImpl(3);
 		node.addNeighbour(node2);
 		node.addNeighbour(node3);
-		int expected = 2;
-		int output = node.getNeighbours().size();
+		ArrayList<MyNode> expected = new ArrayList<>();
+		expected.add(node2);
+		expected.add(node3);
+		ArrayList<MyNode> output = node.getNeighbours();
+		assertEquals(expected, output);
+	}
 		assertEquals(expected, output);
 	}
 	
