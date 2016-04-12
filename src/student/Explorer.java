@@ -43,7 +43,7 @@ public class Explorer {
     	MyCavern cavern = new MyCavernImpl();
     	
 		// add the node to the cavern
-		cavern.addNode(state.getCurrentLocation());
+		cavern.addNode(state.getCurrentLocation(), state.getDistanceToTarget());
 		MyNode node = cavern.getNode(state.getCurrentLocation());
 		
     	while(state.getDistanceToTarget() != 0)  {
@@ -55,7 +55,7 @@ public class Explorer {
         	
         	// add any new neighbours to the cavern and the node
         	for (game.NodeStatus neighbour : state.getNeighbours()) {
-        		cavern.addNode(neighbour.getId());
+        		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
         		node.addNeighbour(neighbour.getId());
         	}
  
