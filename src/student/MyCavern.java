@@ -25,6 +25,22 @@ public interface MyCavern {
 	MyNode getNode(long id);
 
 	/**
+	 * Set the current location of the explorer.
+	 *
+	 * @param id, the id of the location.
+	 * @throws IllegalArgumentException if location is not found (I always expect to find it,
+	 * something is wrong if not)
+	 */
+	void setLocation(long id);
+
+	/**
+	 * Get the current location of the explorer.
+	 *
+	 * @return the id of the location.
+	 */
+	long getLocation();
+	
+	/**
 	 * Returns the size of the cavern.
 	 *
 	 * @return the number of nodes in the cavern.
