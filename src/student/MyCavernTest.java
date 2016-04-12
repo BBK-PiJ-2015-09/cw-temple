@@ -51,12 +51,33 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 	
-	@Test(expected= NoSuchElementException.class)
-	public void testsGetNextNotPresent() {
+	@Test public void testsGetNextRetracesSteps() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1);
+		cavern.getNode(1).setVisited();
+		cavern.getNode(1).addNeighbour(2);
+		cavern.getNode(1).addNeighbour(4);
 		cavern.setLocation(1);
-		cavern.getNext();
+		cavern.addNode(2);
+		cavern.getNode(2).setVisited();
+		cavern.getNode(2).addNeighbour(1);
+		cavern.getNode(2).addNeighbour(3);
+		cavern.setLocation(2);
+		cavern.addNode(3);
+		cavern.getNode(3).setVisited();
+		cavern.getNode(3).addNeighbour(2);
+		cavern.getNode(3).addNeighbour(4);
+		cavern.getNode(3).addNeighbour(5);
+		cavern.setLocation(3);
+		cavern.addNode(4);
+		cavern.getNode(4).setVisited();
+		cavern.getNode(4).addNeighbour(3);
+		cavern.getNode(4).addNeighbour(1);
+		cavern.setLocation(4);
+		cavern.addNode(5);
+		long expected = 3;
+		long output = cavern.getNext();
+		assertEquals(expected, output);
 	}
 
 }
