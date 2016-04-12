@@ -56,8 +56,8 @@ public class Explorer {
         		node.addNeighbour(neighbour.getId());
         	}
  
-        	// get the next move towards next unvisited node on the board
-        	node = node.getNext();
+        	// get the next move towards the next unvisited node on the board
+        	node = cavern.getNext();
         	
             // move towards the next unvisited node on the board
         	state.moveTo(node.getId());

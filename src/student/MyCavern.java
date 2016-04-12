@@ -31,4 +31,11 @@ public interface MyCavern {
 	 */
 	int size();
 	
+	/**
+	 * Returns the id of the next node to move to, unvisited if possible.
+	 *
+	 * @return the next id to move to.
+	 */
+	long getNext();
+	
 }
