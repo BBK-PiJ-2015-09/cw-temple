@@ -31,7 +31,19 @@ public class MyNodeTest {
 	}
 	
 	@Test
-	public void testsAddNeighboursDoublyLinked() {
+	public void testsGetNeighbours() {
+		MyNode node = new MyNodeImpl(1);
+		MyNode node2 = new MyNodeImpl(2);
+		MyNode node3 = new MyNodeImpl(3);
+		node.addNeighbour(node2);
+		node.addNeighbour(node3);
+		int expected = 2;
+		int output = node.getNeighbours().size();
+		assertEquals(expected, output);
+	}
+	
+	@Test
+	public void testsAddNeighbourDoublyLinked() {
 		MyNode node = new MyNodeImpl(1);
 		MyNode node2 = new MyNodeImpl(2);
 		node.addNeighbour(node2);
