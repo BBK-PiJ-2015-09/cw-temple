@@ -12,13 +12,13 @@ public class MyCavernImpl implements MyCavern {
 	
 	MyCavernImpl() {}
 	
-	public void addNode(long id) {
+	public void addNode(long id, long distance) {
 		for(MyNode node : nodes) {
 			if(node.getId() == id) {
 				return;
 			}
 		}
-		MyNode node = new MyNodeImpl(id);
+		MyNode node = new MyNodeImpl(id, distance);
 		nodes.add(node);
 	}
 	
