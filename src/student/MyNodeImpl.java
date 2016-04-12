@@ -6,9 +6,11 @@ public class MyNodeImpl implements MyNode {
 	private long id;
 	private boolean visited;
 	private ArrayList<Long> neighbours = new ArrayList<>();
+	private long distance;
 	
-	MyNodeImpl(long id) {
+	MyNodeImpl(long id, long distance) {
 		this.id = id;
+		this.distance = distance;
 	}
 	
 	public long getId() {
@@ -21,6 +23,10 @@ public class MyNodeImpl implements MyNode {
 	
 	public void setVisited() {
 		visited = true;
+	}
+	
+	public long getDistance() {
+		return distance;
 	}
 	
 	public ArrayList<Long> getNeighbours() {
