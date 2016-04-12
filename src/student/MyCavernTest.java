@@ -14,4 +14,14 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test
+	public void testsaddNodeOnlyOnce() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		cavern.addNode(1);
+		long expected = 1;
+		long output = cavern.size();
+		assertEquals(expected, output);
+	}
+	
 }

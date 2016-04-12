@@ -23,4 +23,8 @@ public class MyCavernImpl implements MyCavern {
 		return null;
 	}
 	
+	public int size() {
+		return nodes.size();
+	}
+	
 }

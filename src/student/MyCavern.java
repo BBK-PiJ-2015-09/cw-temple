@@ -18,10 +18,17 @@ public interface MyCavern {
 	 * Returns a node by its ID.
 	 *
 	 * @param id, the id of the node to return.
-	 * @return a boolean, true if visited, false otherwise.
+	 * @return the MyNode.
 	 * @throws IllegalArgumentException if MyNode is not found (I always expect to find it,
 	 * something is wrong if not)
 	 */
 	MyNode getNode(long id);
 
+	/**
+	 * Returns the size of the cavern.
+	 *
+	 * @return the number of nodes in the cavern.
+	 */
+	int size();
+	
 }
