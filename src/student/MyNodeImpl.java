@@ -45,21 +45,6 @@ public class MyNodeImpl implements MyNode {
 		}
 	}
 	
-	public void addNeighbours(MyNode[] neighbours) {
-		if (neighbours == null) {
-			throw new NullPointerException();
-		} else {
-			for(MyNode neighbour : neighbours) {
-				if( !this.neighbours.contains(neighbour) ) {
-					this.neighbours.add(neighbour);
-				}
-				if( !neighbour.getNeighbours().contains(this) ) {
-					neighbour.addNeighbour(this);
-				}
-			}
-		}
-	}
-	
 	public MyNode getNode(long id) {
 		for(MyNode neighbour : neighbours) {
 			if (neighbour.getId() == id) {

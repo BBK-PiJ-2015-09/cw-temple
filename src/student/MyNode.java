@@ -42,14 +42,6 @@ public interface MyNode {
 	 * @param neighbour the neighbour to be checked and added if new
 	 */
 	 void addNeighbour(MyNode neighbour);
-	 
-	/**
-	 * Add any neighbours (which do not already exist) to the node.
-   	 *
-   	 * @param neighbours the neighbours to be checked and added if new
-  	 * @throws NullPointerException if neighbours is null
-	 */
-	 void addNeighbours(MyNode[] neighbours);
 
 	/**
 	 * Get a MyNode by its ID.

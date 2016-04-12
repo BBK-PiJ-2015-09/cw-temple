@@ -42,10 +42,10 @@ public class Explorer {
     	// create the root node
     	MyNode node = new MyNodeImpl(state.getCurrentLocation());
     	// add any neighbour(s) as connected nodes
-    	MyNode[] neighbourNodes = new MyNode[1];
+    	MyNode newNode;
     	for (game.NodeStatus neighbour : state.getNeighbours()) {
-    		neighbourNodes[0] = new MyNodeImpl(neighbour.getId()); 
-    		node.addNeighbours(neighbourNodes);
+    		newNode = new MyNodeImpl(neighbour.getId()); 
+    		node.addNeighbour(newNode);
     	}
 
         while(state.getDistanceToTarget() != 0)  {
@@ -65,8 +65,8 @@ public class Explorer {
 
         	// add any new neighbour(s) as connected nodes
         	for (game.NodeStatus neighbour : state.getNeighbours()) {
-        		neighbourNodes[0] = new MyNodeImpl(neighbour.getId()); 
-        		node.addNeighbours(neighbourNodes);
+        		newNode = new MyNodeImpl(neighbour.getId());
+        		node.addNeighbour(newNode);
             	System.out.println("Neighbour:" + neighbour.getId());
         	}
         }
