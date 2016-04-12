@@ -35,7 +35,7 @@ public interface MyNode {
 	 * @return the neighbourhood MyNodes in an ArrayList
 	 */
 	 ArrayList<MyNode> getNeighbours();
-	
+
 	/**
 	 * Add a neighbour (if it does not already exist) to the node.
 	 *

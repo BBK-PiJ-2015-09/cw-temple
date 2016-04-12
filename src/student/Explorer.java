@@ -43,15 +43,20 @@ public class Explorer {
     	MyNode node = new MyNodeImpl(state.getCurrentLocation());
     	// add any neighbour(s) as connected nodes
     	MyNode newNode;
-    	for (game.NodeStatus neighbour : state.getNeighbours()) {
-    		newNode = new MyNodeImpl(neighbour.getId()); 
-    		node.addNeighbour(newNode);
-    	}
 
         while(state.getDistanceToTarget() != 0)  {
         	System.out.println("Location:" + node.getId());
+        	
+        	// add any new neighbour(s) as connected nodes
+        	for (game.NodeStatus neighbour : state.getNeighbours()) {
+        		newNode = new MyNodeImpl(neighbour.getId());
+        		node.addNeighbour(newNode);
+            	System.out.println("Neighbour:" + neighbour.getId());
+        	}
+        	
         	// mark as visited
         	node.setVisited();
+        	System.out.println("This visited?:" + node.getVisited());
 
         	while (node.getVisited() == true) {
         		// get the next move towards next unvisited node on the board
@@ -63,12 +68,6 @@ public class Explorer {
         		state.moveTo(node.getId());
         	}
 
-        	// add any new neighbour(s) as connected nodes
-        	for (game.NodeStatus neighbour : state.getNeighbours()) {
-        		newNode = new MyNodeImpl(neighbour.getId());
-        		node.addNeighbour(newNode);
-            	System.out.println("Neighbour:" + neighbour.getId());
-        	}
         }
 
         return;

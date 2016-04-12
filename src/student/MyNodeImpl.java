@@ -11,11 +11,6 @@ public class MyNodeImpl implements MyNode {
 		this.id = id;
 	}
 	
-	MyNodeImpl(long id, MyNode parent) {
-		this.id = id;
-		neighbours.add(parent);
-	}
-	
 	public long getId() {
 		return id;
 	}
