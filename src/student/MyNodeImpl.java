@@ -6,6 +6,7 @@ public class MyNodeImpl implements MyNode {
 	private long id;
 	private boolean visited;
 	private ArrayList<MyNode> neighbours = new ArrayList<>();
+	private ArrayList<Long> neighbour_ids = new ArrayList<>();
 	
 	MyNodeImpl(long id) {
 		this.id = id;
@@ -27,14 +28,19 @@ public class MyNodeImpl implements MyNode {
 		return neighbours;
 	}
 	
+	public ArrayList<Long> getNeighbourIds() {
+		return neighbour_ids;
+	}
+	
 	public void addNeighbour(MyNode neighbour) {
 		if (neighbour == null) {
 			throw new NullPointerException();
 		} else {
-			if( !this.neighbours.contains(neighbour) ) {
+			if( !this.neighbour_ids.contains(neighbour.getId()) ) {
 				this.neighbours.add(neighbour);
+				this.neighbour_ids.add(neighbour.getId());
 			}
-			if( !neighbour.getNeighbours().contains(this) ) {
+			if( !neighbour.getNeighbourIds().contains(this.getId()) ) {
 				neighbour.addNeighbour(this);
 			}
 		}

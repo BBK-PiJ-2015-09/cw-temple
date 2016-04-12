@@ -37,6 +37,13 @@ public interface MyNode {
 	 ArrayList<MyNode> getNeighbours();
 
 	/**
+	 * Get any neighbour IDs to the node.
+	 *
+	 * @return the neighbourhood MyNode IDs in an ArrayList
+	 */
+	 ArrayList<Long> getNeighbourIds();
+	 
+	/**
 	 * Add a neighbour (if it does not already exist) to the node.
 	 *
 	 * @param neighbour the neighbour to be checked and added if new
