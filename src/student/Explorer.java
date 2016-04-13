@@ -94,20 +94,16 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void escape(EscapeState state) {
-    	Pathfinder path = new Pathfinder();
-    	
-    	// get the graph
-    	path.add(state.getVertices());
+    	// instantiate a pathfinder with the graph
+    	Pathfinder path = new PathfinderImpl(state.getVertices());
     	
     	// get the current location
     	path.setStart(state.getCurrentNode());
     	
     	// get the goal
-    	path.setGoal(state.getExit());
+    	path.setEnd(state.getExit());
     	
-    	// find the shortest path to the exit
-    	
-    	// move through that path
+    	// move through the shortest path to the exit
     	while(state.getCurrentNode() != state.getExit()) {
     		state.moveTo(path.getNext());
     	}
