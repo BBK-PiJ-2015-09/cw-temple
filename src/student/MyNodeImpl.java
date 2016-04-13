@@ -8,31 +8,37 @@ public class MyNodeImpl implements MyNode {
 	private ArrayList<Long> neighbours = new ArrayList<>();
 	private long distance;
 	
-	MyNodeImpl(long id, long distance) {
+	public MyNodeImpl(long id, long distance) {
 		this.id = id;
 		this.distance = distance;
 	}
 	
+	@Override
 	public long getId() {
 		return id;
 	}
 	
+	@Override
 	public boolean getVisited() {
 		return visited;
 	}
 	
+	@Override
 	public void setVisited() {
 		visited = true;
 	}
 	
+	@Override
 	public long getDistance() {
 		return distance;
 	}
 	
+	@Override
 	public ArrayList<Long> getNeighbours() {
 		return neighbours;
 	}
 	
+	@Override
 	public void addNeighbour(long neighbour) {
 		if(!this.neighbours.contains(neighbour)) {
 			this.neighbours.add(neighbour);

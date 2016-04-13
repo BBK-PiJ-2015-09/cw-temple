@@ -10,8 +10,9 @@ public class MyCavernImpl implements MyCavern {
 	private Stack<Long> history = new Stack();
 	private boolean retracing = false;
 	
-	MyCavernImpl() {}
+	public MyCavernImpl() {}
 	
+	@Override
 	public void addNode(long id, long distance) {
 		for(MyNode node : nodes) {
 			if(node.getId() == id) {
@@ -22,6 +23,7 @@ public class MyCavernImpl implements MyCavern {
 		nodes.add(node);
 	}
 	
+	@Override
 	public MyNode getNode(long id) {
 		for(MyNode node : nodes) {
 			if(node.getId() == id) {
@@ -31,6 +33,7 @@ public class MyCavernImpl implements MyCavern {
 		return null;
 	}
 	
+	@Override
 	public void setLocation(long location) {
 		if (!retracing) {
 			history.push(this.location);
@@ -38,14 +41,17 @@ public class MyCavernImpl implements MyCavern {
 		this.location = location;
 	}
 	
+	@Override
 	public long getLocation() {
 		return location;
 	}
 	
+	@Override
 	public int size() {
 		return nodes.size();
 	}
 	
+	@Override
 	public long getNext() {
 		ArrayList<Long> neighbours = getNode(location).getNeighbours();
 		ArrayList<MyNode> options = new ArrayList<>();
