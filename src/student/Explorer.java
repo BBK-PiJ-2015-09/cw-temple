@@ -94,7 +94,24 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void escape(EscapeState state) {
-        //TODO: Escape from the cavern before time runs out
+    	Pathfinder path = new Pathfinder();
+    	
+    	// get the graph
+    	path.add(state.getVertices());
+    	
+    	// get the current location
+    	path.setStart(state.getCurrentNode());
+    	
+    	// get the goal
+    	path.setGoal(state.getExit());
+    	
+    	// find the shortest path to the exit
+    	
+    	// move through that path
+    	while(state.getCurrentNode() != state.getExit()) {
+    		state.moveTo(path.getNext());
+    	}
+    	
     }
 }
 
