@@ -74,8 +74,22 @@ public interface MyNode {
 	/**
 	 * Set the pathlength of this node from the goal.
 	 * 
-	 * @param length the pathlength of this node
+	 * @param length the pathlength of this node.
 	 */
 	void setPathLength(int length);
+	
+	/**
+	 * Get the last node on the path before this one.
+	 *
+	 * @return a MyNode, the last visited.
+	 */
+	MyNode getLastNode();
+	
+	/**
+	 * Set the last node visited on the path.
+	 * 
+	 * @param node the last node visited.
+	 */
+	void setLastNode(MyNode node);
 
 }

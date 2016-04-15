@@ -95,5 +95,15 @@ public class MyNodeTest {
 		int output = node.getPathLength();
 		assertEquals(expected, output);
 	}
+
+	@Test
+	public void testsSetLastNode() {
+		MyNode node = new MyNodeImpl(1, 1);
+		MyNode node2 = new MyNodeImpl(1, 1);
+		node.setLastNode(node2);
+		int expected = node2;
+		int output = node.getLastNode();
+		assertEquals(expected, output);
+	}
 	
 }
