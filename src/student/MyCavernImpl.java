@@ -96,6 +96,29 @@ public class MyCavernImpl implements MyCavern {
 		}
 	}
 	
+	@Override
+	public Stack<Long> getPath(long start, long end) {
+		// set all Node.searched to false
+		// set all Node.pathLength to Integer.MAX_VALUE
+		// Node should have lastStep
+		// end = unvisited MyNode with the smallest distance to orb
+		// start = location;
+		// start.pathLength = 0;
+		// get its neighbours
+		// set the pathLength of each to this pathLength +1 (0+1) if less than its current pathLength.
+		// start.searched = true;
+		// while (node != end) {
+			// lastNode = node;
+			// node = node with the shortest pathLength node from the cavern where searched == false
+			// set its lastStep to lastNode;
+			// get its neighbours
+			// set the pathLength of each to this pathLength +1 if less than its current pathLength.
+			// node.searched = true
+		// }
+		// work back from the end through each lastStep, pushing the id of each onto a stack, all the way to the start
+		// return a stack of all the steps to the next unvisited node
+	}
+	
 	private long getLast() {
 		if(!retracing) {
 			retracing = true;
