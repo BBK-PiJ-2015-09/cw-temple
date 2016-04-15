@@ -91,8 +91,8 @@ public class MyNodeTest {
 	public void testsSetPathLength() {
 		MyNode node = new MyNodeImpl(1, 1);
 		node.setPathLength(10);
-		boolean expected = 10;
-		boolean output = node.getPathLength();
+		int expected = 10;
+		int output = node.getPathLength();
 		assertEquals(expected, output);
 	}
 	
