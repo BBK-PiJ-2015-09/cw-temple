@@ -87,6 +87,15 @@ public class MyCavernImpl implements MyCavern {
 		}
 	}
 	
+	@Override
+	public void setAllPathsInfinite() {
+		for(MyNode node : nodes) {
+			if(node.getPathLength() != Integer.MAX_VALUE) {
+				node.setPathLength(Integer.MAX_VALUE);
+			}
+		}
+	}
+	
 	private long getLast() {
 		if(!retracing) {
 			retracing = true;
