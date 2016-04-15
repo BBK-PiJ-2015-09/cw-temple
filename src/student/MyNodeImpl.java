@@ -9,6 +9,7 @@ public class MyNodeImpl implements MyNode {
 	private long distance;
 	private boolean searched;
 	private int pathLength;
+	private MyNode lastNode;
 	
 	public MyNodeImpl(long id, long distance) {
 		this.id = id;
@@ -65,6 +66,16 @@ public class MyNodeImpl implements MyNode {
 	@Override
 	public void setPathLength(int pathLength) {
 		this.pathLength = pathLength;
+	}
+
+	@Override
+	public MyNode getLastNode() {
+		return lastNode;
+	}
+	
+	@Override
+	public void setLastNode(MyNode lastNode) {
+		this.lastNode = lastNode;
 	}
 	
 }

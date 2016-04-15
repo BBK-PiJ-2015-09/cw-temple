@@ -101,8 +101,8 @@ public class MyNodeTest {
 		MyNode node = new MyNodeImpl(1, 1);
 		MyNode node2 = new MyNodeImpl(1, 1);
 		node.setLastNode(node2);
-		int expected = node2;
-		int output = node.getLastNode();
+		MyNode expected = node2;
+		MyNode output = node.getLastNode();
 		assertEquals(expected, output);
 	}
 	
