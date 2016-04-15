@@ -51,7 +51,8 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 	
-	@Test public void testsGetNextRetracesSteps() {
+	@Test 
+	public void testsGetNextRetracesSteps() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.getNode(1).setVisited();
@@ -80,7 +81,8 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 
-	@Test public void testsGetNextKeepsRetracingToUnvisited() {
+	@Test 
+	public void testsGetNextKeepsRetracingToUnvisited() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.getNode(1).setVisited();
@@ -114,7 +116,8 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 	
-	@Test public void testsGetNextChoosesLeastDistance() {
+	@Test 
+	public void testsGetNextChoosesLeastDistance() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 3);
 		cavern.getNode(1).setVisited();
@@ -133,4 +136,14 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test
+	public void testsSetAllUnsearched() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 1);
+		cavern.getNode(1).setSearched(true);		
+		cavern.setAllUnsearched();
+		boolean expected = false;
+		boolean output = cavern.getNode(1).getSearched();
+		assertEquals(expected, output);
+	}
 }
