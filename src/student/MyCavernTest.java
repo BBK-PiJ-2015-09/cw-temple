@@ -146,4 +146,14 @@ public class MyCavernTest {
 		boolean output = cavern.getNode(1).getSearched();
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsSetAllPathsInfinite() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 1);
+		cavern.setAllPathsInfinite();		
+		int expected = Integer.MAX_VALUE;
+		int output = cavern.getNode(1).getPathLength();
+		assertEquals(expected, output);
+	}
 }
