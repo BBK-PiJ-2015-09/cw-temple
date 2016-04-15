@@ -7,6 +7,7 @@ public class MyNodeImpl implements MyNode {
 	private boolean visited;
 	private ArrayList<Long> neighbours = new ArrayList<>();
 	private long distance;
+	private boolean searched;
 	
 	public MyNodeImpl(long id, long distance) {
 		this.id = id;
@@ -45,4 +46,14 @@ public class MyNodeImpl implements MyNode {
 		}
 	}
 
+	@Override
+	public boolean getSearched() {
+		return searched;
+	}
+	
+	@Override
+	public void setSearched(boolean searched) {
+		this.searched = searched;
+	}
+	
 }
