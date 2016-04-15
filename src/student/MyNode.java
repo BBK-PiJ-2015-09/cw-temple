@@ -59,7 +59,23 @@ public interface MyNode {
 	
 	/**
 	 * Set this node to searched/unsearched.
+	 * 
+	 * @param searched whether or not this has been searched.
 	 */
 	void setSearched(boolean searched);
+	
+	/**
+	 * Get the path length of this node from the goal.
+	 *
+	 * @return an int of the pathlength of this node.
+	 */
+	int getPathLength();
+	
+	/**
+	 * Set the pathlength of this node from the goal.
+	 * 
+	 * @param length the pathlength of this node
+	 */
+	void setPathLength(int length);
 
 }

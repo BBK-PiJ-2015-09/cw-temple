@@ -79,6 +79,21 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test
+	public void testsGetPathLength() {
+		MyNode node = new MyNodeImpl(1, 1);
+		int expected = 0;
+		int output = node.getPathLength();
+		assertEquals(expected, output);
+	}
 
+	@Test
+	public void testsSetPathLength() {
+		MyNode node = new MyNodeImpl(1, 1);
+		node.setPathLength(10);
+		boolean expected = 10;
+		boolean output = node.getPathLength();
+		assertEquals(expected, output);
+	}
 	
 }
