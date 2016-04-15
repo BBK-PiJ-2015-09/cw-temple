@@ -49,5 +49,17 @@ public interface MyNode {
 	 * @param id the id of the neighbour to be checked and added if new
 	 */
 	void addNeighbour(long id);
+	
+	/**
+	 * Returns whether this node has been searched.
+	 *
+	 * @return a boolean, true if searched, false otherwise.
+	 */
+	boolean getSearched();
+	
+	/**
+	 * Set this node to searched/unsearched.
+	 */
+	void setSearched(boolean searched);
 
 }
