@@ -1,5 +1,7 @@
 package student;
 
+import java.util.Stack;
+
 /**
   * A MyCavern is our explorer's mental map of the Cavern.
   *
@@ -66,4 +68,14 @@ public interface MyCavern {
 	 * Set all pathlengths to infinity.
 	 */
 	void setAllPathsInfinite();
+	
+	/**
+	 * Return the shortest path between two nodes.
+	 * 
+	 * @param start the id of the starting node
+	 * @param end the id of the ending node
+	 * @return a stack of the next neighbouring id to move to in order 
+	 * to reach the end node in the shortest number of steps
+	 */
+	Stack<Long> getPath(long start, long end);
 }
