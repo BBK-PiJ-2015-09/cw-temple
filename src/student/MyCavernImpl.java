@@ -78,6 +78,15 @@ public class MyCavernImpl implements MyCavern {
 		}
 	}
 	
+	@Override
+	public void setAllUnsearched() {
+		for(MyNode node : nodes) {
+			if(node.getSearched()) {
+				node.setSearched(false);
+			}
+		}
+	}
+	
 	private long getLast() {
 		if(!retracing) {
 			retracing = true;
