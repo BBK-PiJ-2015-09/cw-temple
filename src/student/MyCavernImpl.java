@@ -138,7 +138,9 @@ public class MyCavernImpl implements MyCavern {
 				neighbours.remove(node);
 			}
 			
-			// if the neighbour's pathlength is greater than this node's pathlength + 1, set its pathlength to pathlength + 1
+			// if the neighbour's pathlength is greater than this node's pathlength + 1:
+				// set its pathlength to pathlength + 1
+				// set the neighbour's lastNode to this node
 			for(MyNode neighbour : neighbours) {
 				if(neighbour.getPathLength() > (currentNode.getPathLength() + 1)) {
 					neighbour.setPathLength(currentNode.getPathLength() + 1);
