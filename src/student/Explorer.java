@@ -1,6 +1,9 @@
 package student;
 
 import student.MyNode;
+
+import java.util.Stack;
+
 import game.EscapeState;
 import game.ExplorationState;
 
@@ -46,8 +49,11 @@ public class Explorer {
 		cavern.addNode(state.getCurrentLocation(), state.getDistanceToTarget());
 		MyNode node = cavern.getNode(state.getCurrentLocation());
 		
+		Stack<Long> path = new Stack<Long>();
+		
     	while(state.getDistanceToTarget() != 0)  {
-        	// set location
+        	
+    		// set location
     		cavern.setLocation(node.getId());
      		
         	// mark as visited
@@ -58,12 +64,26 @@ public class Explorer {
         		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
         		node.addNeighbour(neighbour.getId());
         	}
- 
-        	// get the next move towards the next unvisited node on the board
-        	node = cavern.getNode(cavern.getNext());
         	
+        	System.out.println("Empty path?: " + path.isEmpty());
+        	System.out.println("Cavern location: " + cavern.getLocation());
+        	System.out.println("Best node: " + cavern.getBestNode());
+
+        	if(path.isEmpty()) {
+        		// get the path to the next best node
+        		path = cavern.getPath(cavern.getLocation(), cavern.getBestNode());
+        	}
+        	
+        	System.out.println("Empty path? (should never be true): " + path.isEmpty());
+        	
+        	System.out.println("Next steps: ");
+        	System.out.println(path.peek());
             // move towards the next unvisited node on the board
-        	state.moveTo(node.getId());
+        	node = cavern.getNode(path.peek());
+        	state.moveTo(path.pop());
+        	
+        	System.out.println("~MOVING!!*~~~~");
+
     	}
  
         return;
