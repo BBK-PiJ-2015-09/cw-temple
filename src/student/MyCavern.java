@@ -106,9 +106,9 @@ public interface MyCavern {
 	/**
 	 * Set the lowest distance ever reached.
 	 * 
-	 * @param lowestDistance an int of the lowest distance reached.
+	 * @param closest an int of the lowest distance reached.
 	 */
-	void setClosest(int lowestDistance);
+	void setClosest(int closest);
 	
 	void printState();
 }
