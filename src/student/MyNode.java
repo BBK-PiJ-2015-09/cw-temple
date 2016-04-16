@@ -37,6 +37,13 @@ public interface MyNode {
 	long getDistance();
 	
 	/**
+	 * Sets the distance of the current node from the goal.
+	 *
+	 * @param distance, a long.
+	 */
+	long setDistance(long distance);
+	
+	/**
 	 * Get any neighbour IDs to the node.
 	 *
 	 * @return the neighbourhood MyNode IDs in an ArrayList
