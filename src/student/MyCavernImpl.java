@@ -181,14 +181,14 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	@Override
-	public MyNode getBestNode() {
+	public long getBestNode() {
 		MyNode minimumNode = nodes.get(0);
 		for(MyNode node : nodes) {
 			if(node.getDistance() < minimumNode.getDistance()) {
 				minimumNode = node;
 			}
 		}
-		return minimumNode;
+		return minimumNode.getId();
 	}
 	
 	private long getLast() {

@@ -79,7 +79,7 @@ public interface MyCavern {
 	 * 
 	 * @return the node with the lowest value for distance
 	 */
-	MyNode getBestNode();
+	long getBestNode();
 	
 	void printState();
 }

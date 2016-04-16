@@ -197,12 +197,14 @@ public class MyCavernTest {
 	@Test
 	public void testsGetBestNode() {
 		MyCavern cavern = new MyCavernImpl();
-		cavern.addNode(1, 2);
+		cavern.addNode(1, 1);
+		cavern.getNode(1).setVisited();
 		cavern.addNode(2, 2);
-		cavern.addNode(3, 1);
-		cavern.addNode(4, 2);
+		cavern.getNode(2).setVisited();
+		cavern.addNode(3, 2);
+		cavern.addNode(4, 3);
 		long expected = 3;
-		long output = cavern.getBestNode().getId();
+		long output = cavern.getBestNode();
 		assertEquals(expected, output);
 	}
 }
