@@ -9,6 +9,15 @@ import java.util.Stack;
 public class MyCavernTest {
 	
 	@Test
+	public void testsAddNodeById() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		long expected = 1;
+		long output = cavern.getNode(1).getId();
+		assertEquals(expected, output);
+	}
+	
+	@Test
 	public void testsAddNode() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
