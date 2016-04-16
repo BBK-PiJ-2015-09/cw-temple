@@ -96,27 +96,68 @@ public class MyCavernImpl implements MyCavern {
 		}
 	}
 	
+	public void printState() {
+		for(MyNode node : nodes) {
+			node.printState();
+			System.out.println("-------");
+		}
+		System.out.println("**********************");
+
+	}
+	
 	@Override
 	public Stack<Long> getPath(long start, long end) {
-		// set all Node.searched to false
-		// set all Node.pathLength to Integer.MAX_VALUE
-		// Node should have lastStep
-		// end = unvisited MyNode with the smallest distance to orb
-		// start = location;
-		// start.pathLength = 0;
-		// get its neighbours
-		// set the pathLength of each to this pathLength +1 (0+1) if less than its current pathLength.
-		// start.searched = true;
-		// while (node != end) {
-			// lastNode = node;
-			// node = node with the shortest pathLength node from the cavern where searched == false
-			// set its lastStep to lastNode;
-			// get its neighbours
-			// set the pathLength of each to this pathLength +1 if less than its current pathLength.
-			// node.searched = true
-		// }
-		// work back from the end through each lastStep, pushing the id of each onto a stack, all the way to the start
-		// return a stack of all the steps to the next unvisited node
+		setAllUnsearched();
+		setAllPathsInfinite();
+		MyNode node = getNode(start);
+		node.setPathLength(0);
+		ArrayList<Long> neighbourIds = node.getNeighbours();
+		for(long id : neighbourIds) {
+			if ((node.getPathLength() + 1) < getNode(id).getPathLength()) {
+				getNode(id).setPathLength(node.getPathLength() + 1);
+			}
+		}
+		node.setSearched(true);
+		MyNode lastStep;
+		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
+
+		int loop = 3;
+		while(node.getId() != end && loop > 0) {
+			System.out.println("Current Node:" + node.getId());
+			printState();
+			lastStep = node;
+
+			for(MyNode newNode : nodes) {
+				if(!newNode.getSearched()) {
+					unsearchedNodes.add(newNode);
+				}
+			}
+			
+			MyNode minimumNode = unsearchedNodes.get(0);
+			for(MyNode newNode : unsearchedNodes) {
+				if(newNode.getPathLength() < minimumNode.getPathLength()) {
+					minimumNode = newNode;
+				}
+			}
+			node = minimumNode;
+
+//			node.setLastNode(lastStep);
+//			neighbourIds = node.getNeighbours();
+//			for(long id : neighbourIds) {
+//				if ((node.getPathLength() + 1) < getNode(id).getPathLength()) {
+//					getNode(id).setPathLength(lastStep.getPathLength() + 1);
+//				}
+//			}
+//			node.setSearched(true);
+			loop--;
+		}
+
+		Stack<Long> output = new Stack<Long>();
+		while(node.getId() != start) {
+			output.push(node.getId());
+			node = node.getLastNode();
+		}
+		return output;
 	}
 	
 	private long getLast() {

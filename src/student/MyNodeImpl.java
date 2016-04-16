@@ -78,4 +78,19 @@ public class MyNodeImpl implements MyNode {
 		this.lastNode = lastNode;
 	}
 	
+	public void printState() {
+		System.out.println("id: " + id);
+		System.out.println("neighbours: ");
+		for(long neighbour : neighbours) {
+			System.out.println(neighbour);
+		}
+		System.out.println("searched: " + searched);
+		System.out.println("pathlength: " + pathLength);
+		if(lastNode != null) {
+			System.out.println("lastNode: " + lastNode.getId());
+		} else {
+			System.out.println("lastNode: null");
+		}
+
+	}
 }

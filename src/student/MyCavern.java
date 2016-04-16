@@ -78,4 +78,6 @@ public interface MyCavern {
 	 * to reach the end node in the shortest number of steps
 	 */
 	Stack<Long> getPath(long start, long end);
+	
+	void printState();
 }
