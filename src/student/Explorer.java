@@ -2,10 +2,12 @@ package student;
 
 import student.MyNode;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 import game.EscapeState;
 import game.ExplorationState;
+import game.Node;
 
 
 public class Explorer {
@@ -105,13 +107,33 @@ public class Explorer {
      */
     public void escape(EscapeState state) {
     	
-//    	System.out.println(state.getVertices().toString());
+    	System.out.println("***********");
 
-//    	// move through the shortest path to the exit
-//    	while(state.getCurrentNode() != state.getExit()) {
-//    		state.moveTo(cavern.getPath(state.getLocation(), state.getExit()));
-//    	}
+    	// build a cavern out of the vertices
+    	MyCavern cavern = new MyCavernImpl();
+    	for(Node node : state.getVertices()) {
+    		cavern.addNode(node.getId());
+    		for(Node neighbour : node.getNeighbours()) {
+    			cavern.getNode(node.getId()).addNeighbour(neighbour.getId());
+    		}
+    	}
+        
+    	// get the shortest path to the exit
+		Stack<Long> path = new Stack<Long>();
+		path = cavern.getPath(state.getCurrentNode().getId(), state.getExit().getId());	
+		
+    	// move through the shortest path to the exit
+    	while(!path.isEmpty()) {
+    		for (Node node : state.getVertices()) {
+    			if (!path.isEmpty() && node.getId() == path.peek()) {
+    				path.pop();
+    	    		state.moveTo(node);
+    			}
+    		}
+
+    	}
     	
+    	return;
     }
 }
 
