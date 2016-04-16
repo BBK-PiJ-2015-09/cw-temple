@@ -101,7 +101,7 @@ public class MyCavernImpl implements MyCavern {
 			node.printState();
 			System.out.println("-------");
 		}
-		System.out.println("**********************");
+		System.out.println("**********");
 
 	}
 	
@@ -109,47 +109,68 @@ public class MyCavernImpl implements MyCavern {
 	public Stack<Long> getPath(long start, long end) {
 		MyNode lastStep;
 		MyNode minimumNode;
+		MyNode currentNode;
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
 		ArrayList<MyNode> neighbours = new ArrayList<>();
 
+		// add all nodes to unsearched set
 		for(MyNode newNode : nodes) {
 			unsearchedNodes.add(newNode);
 		}
 		
+		// set all node paths to max
 		setAllPathsInfinite();
-		MyNode node = getNode(start);
-		node.setPathLength(0);
+		
+		// set currentNode to start
+		currentNode = getNode(start);
+		
+		// set currentNode pathlength to zero (it's the start)
+		currentNode.setPathLength(0);
+		
 		int loop = 3;
-		while(node.getId() != end && loop > 0) {
-			System.out.println("Current Node:" + node.getId());
-			printState();
-			lastStep = node;
-			unsearchedNodes.remove(node);
+		
+		// loop until currentNode is the end
+		while(currentNode.getId() != end && loop > 0) {
 			
+			// hold currentNode temporarily
+			lastStep = currentNode;
+			
+			// remove currentNode from the set of unsearched nodes
+			unsearchedNodes.remove(currentNode);
+			
+			// get the first of the unsearched nodes as the initial minimum node
 			minimumNode = unsearchedNodes.get(0);
-			for(MyNode newNode : unsearchedNodes) {
-				if(newNode.getPathLength() < minimumNode.getPathLength()) {
+			
+			// find the unsearched node with the minimum pathlength
+			for(MyNode node : unsearchedNodes) {
+				if(node.getPathLength() < minimumNode.getPathLength()) {
 					minimumNode = newNode;
 				}
 			}
-			node = minimumNode;
+			
+			// move to the node with the shortest pathlength
+			currentNode = minimumNode;
 
-			node.setLastNode(lastStep);
+			// set its lastnode to the last node
+			currentNode.setLastNode(lastStep);
 			
 			// all good up to here
 			
-			for(long id : node.getNeighbours()) {
+			// get the neighbours of this node
+			for(long id : currentNode.getNeighbours()) {
 				neighbours.add(getNode(id));
 			}
 
+			// remove any not in the unsearched set
 			for(MyNode neighbour : neighbours) {
 				if(!unsearchedNodes.contains(neighbour)) {
 					neighbours.remove(neighbour);
 				}
 			}
 			
+			// if the neighbour's pathlength is less than this node's pathlength + 1, set its pathlength to pathlength + 1
 			for(MyNode neighbour : neighbours) {
-				if((node.getPathLength() + 1) < neighbour.getPathLength()) {
+				if(neighbour.getPathLength() < (node.getPathLength() + 1)) {
 					neighbour.setPathLength(node.getPathLength() + 1);
 				}
 			}
@@ -159,9 +180,9 @@ public class MyCavernImpl implements MyCavern {
 		}
 
 		Stack<Long> output = new Stack<Long>();
-		while(node.getId() != start) {
-			output.push(node.getId());
-			node = node.getLastNode();
+		while(currentNode.getId() != start) {
+			output.push(currentNode.getId());
+			currentNode = currentNode.getLastNode();
 		}
 		return output;
 	}
