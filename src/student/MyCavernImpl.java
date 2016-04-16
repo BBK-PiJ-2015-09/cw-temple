@@ -13,6 +13,17 @@ public class MyCavernImpl implements MyCavern {
 	public MyCavernImpl() {}
 	
 	@Override
+	public void addNode(long id) {
+		for(MyNode node : nodes) {
+			if(node.getId() == id) {
+				return;
+			}
+		}
+		MyNode node = new MyNodeImpl(id);
+		nodes.add(node);
+	}
+	
+	@Override
 	public void addNode(long id, long distance) {
 		for(MyNode node : nodes) {
 			if(node.getId() == id) {
