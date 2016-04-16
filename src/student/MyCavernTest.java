@@ -193,4 +193,16 @@ public class MyCavernTest {
 		Stack<Long> output = cavern.getPath(1L,6L);
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsGetBestNode() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 2);
+		cavern.addNode(2, 2);
+		cavern.addNode(3, 1);
+		cavern.addNode(4, 2);
+		long expected = 3;
+		long output = cavern.getBestNode().getId();
+		assertEquals(expected, output);
+	}
 }

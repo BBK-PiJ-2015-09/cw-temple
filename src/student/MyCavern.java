@@ -74,5 +74,12 @@ public interface MyCavern {
 	 */
 	Stack<Long> getPath(long start, long end);
 	
+	/**
+	 * Return the best node - ie., the node closest to the goal.
+	 * 
+	 * @return the node with the lowest value for distance
+	 */
+	MyNode getBestNode();
+	
 	void printState();
 }
