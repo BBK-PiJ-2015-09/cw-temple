@@ -51,20 +51,6 @@ public interface MyNode {
 	void addNeighbour(long id);
 	
 	/**
-	 * Returns whether this node has been searched.
-	 *
-	 * @return a boolean, true if searched, false otherwise.
-	 */
-	boolean getSearched();
-	
-	/**
-	 * Set this node to searched/unsearched.
-	 * 
-	 * @param searched whether or not this has been searched.
-	 */
-	void setSearched(boolean searched);
-	
-	/**
 	 * Get the path length of this node from the goal.
 	 *
 	 * @return an int of the pathlength of this node.

@@ -61,23 +61,6 @@ public class MyNodeTest {
 		long output = node.getNeighbours().size();
 		assertEquals(expected, output);
 	}
-
-	@Test
-	public void testsGetSearched() {
-		MyNode node = new MyNodeImpl(1, 1);
-		boolean expected = false;
-		boolean output = node.getSearched();
-		assertEquals(expected, output);
-	}
-
-	@Test
-	public void testsSetSearched() {
-		MyNode node = new MyNodeImpl(1, 1);
-		node.setSearched(true);
-		boolean expected = true;
-		boolean output = node.getSearched();
-		assertEquals(expected, output);
-	}
 	
 	@Test
 	public void testsGetPathLength() {

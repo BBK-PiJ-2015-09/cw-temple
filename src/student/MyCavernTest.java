@@ -138,17 +138,6 @@ public class MyCavernTest {
 	}
 	
 	@Test
-	public void testsSetAllUnsearched() {
-		MyCavern cavern = new MyCavernImpl();
-		cavern.addNode(1, 1);
-		cavern.getNode(1).setSearched(true);		
-		cavern.setAllUnsearched();
-		boolean expected = false;
-		boolean output = cavern.getNode(1).getSearched();
-		assertEquals(expected, output);
-	}
-	
-	@Test
 	public void testsSetAllPathsInfinite() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);

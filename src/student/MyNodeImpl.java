@@ -47,16 +47,6 @@ public class MyNodeImpl implements MyNode {
 			this.neighbours.add(neighbour);
 		}
 	}
-
-	@Override
-	public boolean getSearched() {
-		return searched;
-	}
-	
-	@Override
-	public void setSearched(boolean searched) {
-		this.searched = searched;
-	}
 	
 	@Override
 	public int getPathLength() {

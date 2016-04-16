@@ -60,11 +60,6 @@ public interface MyCavern {
 	long getNext();
 	
 	/**
-	 * Set all nodes to be unsearched.
-	 */
-	void setAllUnsearched();
-	
-	/**
 	 * Set all pathlengths to infinity.
 	 */
 	void setAllPathsInfinite();

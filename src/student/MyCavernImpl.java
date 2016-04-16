@@ -79,15 +79,6 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	@Override
-	public void setAllUnsearched() {
-		for(MyNode node : nodes) {
-			if(node.getSearched()) {
-				node.setSearched(false);
-			}
-		}
-	}
-	
-	@Override
 	public void setAllPathsInfinite() {
 		for(MyNode node : nodes) {
 			if(node.getPathLength() != Integer.MAX_VALUE) {
@@ -113,7 +104,6 @@ public class MyCavernImpl implements MyCavern {
 		
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
 		ArrayList<MyNode> nodesToRemove = new ArrayList<>();
-
 		ArrayList<MyNode> neighbours = new ArrayList<>();
 
 		// add all nodes to unsearched set
@@ -157,8 +147,6 @@ public class MyCavernImpl implements MyCavern {
 			}
 			
 			neighbours.clear();
-			
-			// all good up to here
 			
 			// remove currentNode from the set of unsearched nodes
 			unsearchedNodes.remove(currentNode);
