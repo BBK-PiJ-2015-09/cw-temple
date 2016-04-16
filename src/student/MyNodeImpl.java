@@ -11,6 +11,10 @@ public class MyNodeImpl implements MyNode {
 	private int pathLength;
 	private MyNode lastNode;
 	
+	public MyNodeImpl(long id) {
+		this.id = id;
+	}
+	
 	public MyNodeImpl(long id, long distance) {
 		this.id = id;
 		this.distance = distance;
