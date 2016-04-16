@@ -195,10 +195,12 @@ public class MyCavernTest {
 	}
 	
 	@Test
-	public void testsGetPathBeingShit() {
+	public void testsGetPathSecondStep() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(0, 2);
 		cavern.getNode(0).addNeighbour(1);
+		cavern.getNode(0).setVisited();
+		cavern.setLocation(0);
 		cavern.addNode(1, 1);
 		cavern.getNode(1).addNeighbour(0);
 		cavern.getNode(1).addNeighbour(2);
@@ -206,9 +208,13 @@ public class MyCavernTest {
 		cavern.getNode(2).addNeighbour(1);
 		cavern.getNode(2).addNeighbour(3);
 
+		cavern.getPath(0L,1L);		
+		cavern.getNode(1).setVisited();
+		cavern.setLocation(1);
+		
 		Stack<Long> expected = new Stack<Long>(); 
 		expected.push(2L);
-		Stack<Long> output = cavern.getPath(1L,2L);
+		Stack<Long> output = output = cavern.getPath(1L,2L);
 		assertEquals(expected, output);
 	}
 	

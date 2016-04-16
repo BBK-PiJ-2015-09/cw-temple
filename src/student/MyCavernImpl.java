@@ -98,7 +98,6 @@ public class MyCavernImpl implements MyCavern {
 	
 	@Override
 	public Stack<Long> getPath(long start, long end) {
-		MyNode lastStep;
 		MyNode minimumNode;
 		MyNode currentNode;
 		
@@ -139,10 +138,11 @@ public class MyCavernImpl implements MyCavern {
 				neighbours.remove(node);
 			}
 			
-			// if the neighbour's pathlength is less than this node's pathlength + 1, set its pathlength to pathlength + 1
+			// if the neighbour's pathlength is greater than this node's pathlength + 1, set its pathlength to pathlength + 1
 			for(MyNode neighbour : neighbours) {
-				if(neighbour.getPathLength() < (currentNode.getPathLength() + 1)) {
+				if(neighbour.getPathLength() > (currentNode.getPathLength() + 1)) {
 					neighbour.setPathLength(currentNode.getPathLength() + 1);
+					neighbour.setLastNode(currentNode);
 				}
 			}
 			
@@ -150,7 +150,7 @@ public class MyCavernImpl implements MyCavern {
 			
 			// remove currentNode from the set of unsearched nodes
 			unsearchedNodes.remove(currentNode);
-			
+
 			// get the first of the unsearched nodes as the initial minimum node
 			minimumNode = unsearchedNodes.get(0);
 			
@@ -160,16 +160,10 @@ public class MyCavernImpl implements MyCavern {
 					minimumNode = node;
 				}
 			}
-			
-			// hold currentNode temporarily
-			lastStep = currentNode;
-			
+
 			// set currentNode to the node with the shortest pathlength
 			currentNode = minimumNode;
 			
-			// set its lastnode to the last node
-			currentNode.setLastNode(lastStep);
-
 		}
 
 		Stack<Long> output = new Stack<Long>();
@@ -177,6 +171,7 @@ public class MyCavernImpl implements MyCavern {
 			output.push(currentNode.getId());
 			currentNode = currentNode.getLastNode();
 		}
+
 		return output;
 	}
 	
