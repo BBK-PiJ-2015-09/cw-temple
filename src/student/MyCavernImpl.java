@@ -182,12 +182,20 @@ public class MyCavernImpl implements MyCavern {
 	
 	@Override
 	public long getBestNode() {
-		MyNode minimumNode = nodes.get(0);
+		ArrayList<MyNode> unvisitedNodes = new ArrayList<MyNode>();
 		for(MyNode node : nodes) {
+			if(!node.getVisited()) {
+				unvisitedNodes.add(node);
+			}
+		}
+		
+		MyNode minimumNode = unvisitedNodes.get(0);
+		for(MyNode node : unvisitedNodes) {
 			if(node.getDistance() < minimumNode.getDistance()) {
 				minimumNode = node;
 			}
 		}
+		
 		return minimumNode.getId();
 	}
 	
