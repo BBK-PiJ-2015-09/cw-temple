@@ -195,6 +195,24 @@ public class MyCavernTest {
 	}
 	
 	@Test
+	public void testsGetPathBeingShit() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(0, 2);
+		cavern.getNode(0).addNeighbour(1);
+		cavern.addNode(1, 1);
+		cavern.getNode(1).addNeighbour(0);
+		cavern.getNode(1).addNeighbour(2);
+		cavern.addNode(2, 1);
+		cavern.getNode(2).addNeighbour(1);
+		cavern.getNode(2).addNeighbour(3);
+
+		Stack<Long> expected = new Stack<Long>(); 
+		expected.push(2L);
+		Stack<Long> output = cavern.getPath(1L,2L);
+		assertEquals(expected, output);
+	}
+	
+	@Test
 	public void testsGetBestNode() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
