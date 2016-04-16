@@ -84,7 +84,6 @@ public class MyNodeImpl implements MyNode {
 		for(long neighbour : neighbours) {
 			System.out.println(neighbour);
 		}
-		System.out.println("searched: " + searched);
 		System.out.println("pathlength: " + pathLength);
 		if(lastNode != null) {
 			System.out.println("lastNode: " + lastNode.getId());
