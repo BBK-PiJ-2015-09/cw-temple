@@ -180,6 +180,17 @@ public class MyCavernImpl implements MyCavern {
 		return output;
 	}
 	
+	@Override
+	public MyNode getBestNode() {
+		MyNode minimumNode = nodes.get(0);
+		for(MyNode node : nodes) {
+			if(node.getDistance() < minimumNode.getDistance()) {
+				minimumNode = node;
+			}
+		}
+		return minimumNode;
+	}
+	
 	private long getLast() {
 		if(!retracing) {
 			retracing = true;
