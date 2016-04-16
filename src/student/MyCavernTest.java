@@ -240,4 +240,60 @@ public class MyCavernTest {
 		long output = cavern.getBestNode();
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsSetAllPaths() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 1);
+		cavern.getNode(1).addNeighbour(2);
+		cavern.addNode(2, 1);
+		cavern.getNode(2).addNeighbour(1);
+		cavern.getNode(2).addNeighbour(3);
+		cavern.addNode(3, 1);
+		cavern.getNode(3).addNeighbour(2);
+		cavern.getNode(3).addNeighbour(4);
+		cavern.getNode(3).addNeighbour(7);
+		cavern.addNode(4, 1);
+		cavern.getNode(4).addNeighbour(3);
+		cavern.getNode(4).addNeighbour(5);
+		cavern.addNode(5, 1);
+		cavern.getNode(5).addNeighbour(4);
+		cavern.getNode(5).addNeighbour(6);
+		cavern.getNode(5).addNeighbour(11);
+		cavern.addNode(6, 1);
+		cavern.getNode(6).addNeighbour(5);
+		cavern.addNode(7, 1);
+		cavern.getNode(7).addNeighbour(3);
+		cavern.getNode(7).addNeighbour(8);
+		cavern.addNode(8, 1);
+		cavern.getNode(8).addNeighbour(7);
+		cavern.getNode(8).addNeighbour(9);
+		cavern.addNode(9, 1);
+		cavern.getNode(9).addNeighbour(8);
+		cavern.getNode(9).addNeighbour(10);
+		cavern.addNode(10, 1);
+		cavern.getNode(10).addNeighbour(9);
+		cavern.getNode(10).addNeighbour(11);
+		cavern.addNode(11, 1);
+		cavern.getNode(11).addNeighbour(5);
+		cavern.getNode(11).addNeighbour(10);
+		
+		cavern.setAllPathsTo(6);
+		
+		long expected = 2;
+		long output = cavern.getNode(1).getLastNode().getId();
+		assertEquals(expected, output);
+		
+//		long expected = 3;
+//		long output = cavern.getNode(7).getLastNode().getId();
+//		assertEquals(expected, output);
+//		
+//		long expected = 7;
+//		long output = cavern.getNode(8).getLastNode().getId();
+//		assertEquals(expected, output);
+//		
+//		long expected = null;
+//		long output = cavern.getNode(6).getLastNode().getId();
+//		assertEquals(expected, output);
+	}
 }

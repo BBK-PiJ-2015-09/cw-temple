@@ -118,6 +118,16 @@ public class Explorer {
     		}
     	}
         
+    	// set the next step on the shortest path to the exit on each node
+    	cavern.setAllPathsTo(state.getExit().getId());
+    	cavern.printState();
+    	
+		// until the time == shortest path to the exit
+		state.getTimeRemaining();
+			// traverse the whole graph
+			// getTime()
+			// getShortestPath()
+		
     	// get the shortest path to the exit
 		Stack<Long> path = new Stack<Long>();
 		path = cavern.getPath(state.getCurrentNode().getId(), state.getExit().getId());	

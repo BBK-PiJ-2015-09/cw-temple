@@ -88,5 +88,13 @@ public interface MyCavern {
 	 */
 	long getBestNode();
 	
+	/**
+	 * Find the next step from each node on the shortest path to the given destination.
+	 * Store it in the lastNode variable.
+	 * 
+	 * @param goal the id of the node all lastNodes should work towards
+	 */
+	void setAllPathsTo(long goal);
+	
 	void printState();
 }
