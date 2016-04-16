@@ -293,4 +293,30 @@ public class MyCavernTest {
 		output = cavern.getNode(8).getLastNode().getId();
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsSetAllPathsFromMiddle() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(5);
+		cavern.getNode(5).addNeighbour(3);
+		cavern.addNode(1);
+		cavern.getNode(1).addNeighbour(2);
+		cavern.addNode(2);
+		cavern.getNode(2).addNeighbour(1);
+		cavern.getNode(2).addNeighbour(3);
+		cavern.addNode(3);
+		cavern.getNode(3).addNeighbour(2);
+		cavern.getNode(3).addNeighbour(4);
+		cavern.getNode(3).addNeighbour(5);
+		cavern.addNode(4);
+		cavern.getNode(4).addNeighbour(3);
+		
+		cavern.setAllPathsTo(4);
+		cavern.printState();
+		
+		long expected = 2;
+		long output = cavern.getNode(1).getLastNode().getId();
+		assertEquals(expected, output);
+
+	}
 }
