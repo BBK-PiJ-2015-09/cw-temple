@@ -110,6 +110,8 @@ public class MyCavernImpl implements MyCavern {
 		MyNode lastStep;
 		MyNode minimumNode;
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
+		ArrayList<MyNode> neighbours = new ArrayList<>();
+
 		for(MyNode newNode : nodes) {
 			unsearchedNodes.add(newNode);
 		}
@@ -133,12 +135,26 @@ public class MyCavernImpl implements MyCavern {
 			node = minimumNode;
 
 			node.setLastNode(lastStep);
-//			neighbourIds = node.getNeighbours();
-//			for(long id : neighbourIds) {
-//				if ((node.getPathLength() + 1) < getNode(id).getPathLength()) {
-//					getNode(id).setPathLength(lastStep.getPathLength() + 1);
-//				}
-//			}
+			
+			// all good up to here
+			
+			for(long id : node.getNeighbours()) {
+				neighbours.add(getNode(id));
+			}
+
+			for(MyNode neighbour : neighbours) {
+				if(!unsearchedNodes.contains(neighbour)) {
+					neighbours.remove(neighbour);
+				}
+			}
+			
+			for(MyNode neighbour : neighbours) {
+				if((node.getPathLength() + 1) < neighbour.getPathLength()) {
+					neighbour.setPathLength(node.getPathLength() + 1);
+				}
+			}
+			
+			neighbours.clear();
 			loop--;
 		}
 
