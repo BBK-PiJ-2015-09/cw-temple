@@ -110,7 +110,10 @@ public class MyCavernImpl implements MyCavern {
 		MyNode lastStep;
 		MyNode minimumNode;
 		MyNode currentNode;
+		
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
+		ArrayList<MyNode> nodesToRemove = new ArrayList<>();
+
 		ArrayList<MyNode> neighbours = new ArrayList<>();
 
 		// add all nodes to unsearched set
@@ -132,11 +135,41 @@ public class MyCavernImpl implements MyCavern {
 		// loop until currentNode is the end
 		while(currentNode.getId() != end && loop > 0) {
 			
-			// hold currentNode temporarily
-			lastStep = currentNode;
+			// get the neighbours of this node
+			for(long id : currentNode.getNeighbours()) {
+				neighbours.add(getNode(id));
+			}
+	
+			
+			// remove any not in the unsearched set
+			for(MyNode neighbour : neighbours) {
+				if(!unsearchedNodes.contains(neighbour)) {
+					nodesToRemove.add(neighbour);
+				}
+			}
+			
+			for(MyNode node : nodesToRemove) {
+				neighbours.remove(node);
+			}
+			
+			// if the neighbour's pathlength is less than this node's pathlength + 1, set its pathlength to pathlength + 1
+			for(MyNode neighbour : neighbours) {
+				if(neighbour.getPathLength() < (currentNode.getPathLength() + 1)) {
+					neighbour.setPathLength(currentNode.getPathLength() + 1);
+				}
+			}
+			
+			neighbours.clear();
+			
+			// all good up to here
 			
 			// remove currentNode from the set of unsearched nodes
 			unsearchedNodes.remove(currentNode);
+			
+			for(MyNode node : unsearchedNodes) {
+				System.out.println(node.getId());
+				System.out.println("*****");
+			}
 			
 			// get the first of the unsearched nodes as the initial minimum node
 			minimumNode = unsearchedNodes.get(0);
@@ -144,38 +177,20 @@ public class MyCavernImpl implements MyCavern {
 			// find the unsearched node with the minimum pathlength
 			for(MyNode node : unsearchedNodes) {
 				if(node.getPathLength() < minimumNode.getPathLength()) {
-					minimumNode = newNode;
+					minimumNode = node;
 				}
 			}
 			
-			// move to the node with the shortest pathlength
+			// hold currentNode temporarily
+			lastStep = currentNode;
+			
+			// set currentNode to the node with the shortest pathlength
 			currentNode = minimumNode;
-
+			
 			// set its lastnode to the last node
 			currentNode.setLastNode(lastStep);
+		
 			
-			// all good up to here
-			
-			// get the neighbours of this node
-			for(long id : currentNode.getNeighbours()) {
-				neighbours.add(getNode(id));
-			}
-
-			// remove any not in the unsearched set
-			for(MyNode neighbour : neighbours) {
-				if(!unsearchedNodes.contains(neighbour)) {
-					neighbours.remove(neighbour);
-				}
-			}
-			
-			// if the neighbour's pathlength is less than this node's pathlength + 1, set its pathlength to pathlength + 1
-			for(MyNode neighbour : neighbours) {
-				if(neighbour.getPathLength() < (node.getPathLength() + 1)) {
-					neighbour.setPathLength(node.getPathLength() + 1);
-				}
-			}
-			
-			neighbours.clear();
 			loop--;
 		}
 
