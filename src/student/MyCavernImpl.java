@@ -129,17 +129,14 @@ public class MyCavernImpl implements MyCavern {
 		
 		// set currentNode pathlength to zero (it's the start)
 		currentNode.setPathLength(0);
-		
-		int loop = 3;
-		
+				
 		// loop until currentNode is the end
-		while(currentNode.getId() != end && loop > 0) {
+		while(currentNode.getId() != end) {
 			
 			// get the neighbours of this node
 			for(long id : currentNode.getNeighbours()) {
 				neighbours.add(getNode(id));
 			}
-	
 			
 			// remove any not in the unsearched set
 			for(MyNode neighbour : neighbours) {
@@ -166,11 +163,6 @@ public class MyCavernImpl implements MyCavern {
 			// remove currentNode from the set of unsearched nodes
 			unsearchedNodes.remove(currentNode);
 			
-			for(MyNode node : unsearchedNodes) {
-				System.out.println(node.getId());
-				System.out.println("*****");
-			}
-			
 			// get the first of the unsearched nodes as the initial minimum node
 			minimumNode = unsearchedNodes.get(0);
 			
@@ -189,9 +181,7 @@ public class MyCavernImpl implements MyCavern {
 			
 			// set its lastnode to the last node
 			currentNode.setLastNode(lastStep);
-		
-			
-			loop--;
+
 		}
 
 		Stack<Long> output = new Stack<Long>();
