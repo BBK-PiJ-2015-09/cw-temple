@@ -128,6 +128,9 @@ public class Explorer {
     			if (!path.isEmpty() && node.getId() == path.peek()) {
     				path.pop();
     	    		state.moveTo(node);
+    	    		if (state.getCurrentNode().getTile().getGold() > 0) {
+    	    			state.pickUpGold();
+    	    		}
     			}
     		}
 
