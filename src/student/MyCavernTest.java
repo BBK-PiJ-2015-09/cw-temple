@@ -312,7 +312,6 @@ public class MyCavernTest {
 		cavern.getNode(4).addNeighbour(3);
 		
 		cavern.setAllPathsTo(4);
-		cavern.printState();
 		
 		long expected = 2;
 		long output = cavern.getNode(1).getLastNode().getId();

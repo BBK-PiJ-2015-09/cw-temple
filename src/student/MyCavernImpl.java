@@ -111,6 +111,7 @@ public class MyCavernImpl implements MyCavern {
 	public Stack<Long> getPath(long start, long end) {
 		MyNode minimumNode;
 		MyNode currentNode;
+		MyNode endNode = nodes.get(0);
 		
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
 		ArrayList<MyNode> nodesToRemove = new ArrayList<>();
@@ -131,7 +132,7 @@ public class MyCavernImpl implements MyCavern {
 		currentNode.setPathLength(0);
 				
 		// loop until currentNode is the end
-		while(currentNode.getId() != end) {
+		while(!unsearchedNodes.isEmpty()) {
 			
 			// get the neighbours of this node
 			for(long id : currentNode.getNeighbours()) {
@@ -165,7 +166,11 @@ public class MyCavernImpl implements MyCavern {
 			unsearchedNodes.remove(currentNode);
 
 			// get the first of the unsearched nodes as the initial minimum node
-			minimumNode = unsearchedNodes.get(0);
+			if(!unsearchedNodes.isEmpty()) {
+				minimumNode = unsearchedNodes.get(0);
+			} else {
+				minimumNode = new MyNodeImpl(999);
+			}
 			
 			// find the unsearched node with the minimum pathlength
 			for(MyNode node : unsearchedNodes) {
@@ -177,8 +182,14 @@ public class MyCavernImpl implements MyCavern {
 			// set currentNode to the node with the shortest pathlength
 			currentNode = minimumNode;
 			
+			if(currentNode.getId() == end) {
+				endNode = currentNode;
+			}
+			
 		}
-
+		
+		currentNode = endNode;
+		
 		Stack<Long> output = new Stack<Long>();
 		while(currentNode.getId() != start) {
 			output.push(currentNode.getId());
