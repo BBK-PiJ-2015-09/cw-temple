@@ -45,8 +45,8 @@ public class MyNodeTest {
 	public void testsSetDistance() {
 		MyNode node = new MyNodeImpl(1, 1);
 		node.setDistance(10);
-		int expected = 10;
-		int output = node.getDistance();
+		long expected = 10;
+		long output = node.getDistance();
 		assertEquals(expected, output);
 	}
 	

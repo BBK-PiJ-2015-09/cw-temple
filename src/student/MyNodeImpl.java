@@ -41,6 +41,11 @@ public class MyNodeImpl implements MyNode {
 	}
 	
 	@Override
+	public void setDistance(long distance) {
+		this.distance = distance;
+	}
+	
+	@Override
 	public ArrayList<Long> getNeighbours() {
 		return neighbours;
 	}

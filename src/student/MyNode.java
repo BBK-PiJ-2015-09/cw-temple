@@ -41,7 +41,7 @@ public interface MyNode {
 	 *
 	 * @param distance, a long.
 	 */
-	long setDistance(long distance);
+	void setDistance(long distance);
 	
 	/**
 	 * Get any neighbour IDs to the node.
