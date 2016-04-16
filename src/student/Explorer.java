@@ -107,8 +107,6 @@ public class Explorer {
      */
     public void escape(EscapeState state) {
     	
-    	System.out.println("***********");
-
     	// build a cavern out of the vertices
     	MyCavern cavern = new MyCavernImpl();
     	for(Node node : state.getVertices()) {
@@ -121,31 +119,25 @@ public class Explorer {
     	// set the next step on the shortest path to the exit on each node
     	cavern.setAllPathsTo(state.getExit().getId());
     	cavern.printState();
-    	
-		// until the time == shortest path to the exit
-		state.getTimeRemaining();
-			// traverse the whole graph
-			// getTime()
-			// getShortestPath()
-		
-    	// get the shortest path to the exit
-		Stack<Long> path = new Stack<Long>();
-		path = cavern.getPath(state.getCurrentNode().getId(), state.getExit().getId());	
-		
-    	// move through the shortest path to the exit
-    	while(!path.isEmpty()) {
+    	    	
+    	while(!(state.getCurrentNode() == state.getExit())) {
+    		long nextId = cavern.getNode(state.getCurrentNode().getId()).getLastNode().getId();
     		for (Node node : state.getVertices()) {
-    			if (!path.isEmpty() && node.getId() == path.peek()) {
-    				path.pop();
-    	    		state.moveTo(node);
-    	    		if (state.getCurrentNode().getTile().getGold() > 0) {
-    	    			state.pickUpGold();
-    	    		}
+    			if(node.getId() == nextId) {
+    				state.moveTo(node);
+    			}
+    			if (state.getCurrentNode().getTile().getGold() > 0) {
+    				state.pickUpGold();
     			}
     		}
-
-    	}
+    	}  	
     	
+//		// until the time == shortest path to the exit
+//		state.getTimeRemaining();
+//			// traverse the whole graph
+//			// getTime()
+//			// getShortestPath()
+
     	return;
     }
 }
