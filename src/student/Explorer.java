@@ -65,24 +65,14 @@ public class Explorer {
         		node.addNeighbour(neighbour.getId());
         	}
         	
-        	System.out.println("Empty path?: " + path.isEmpty());
-        	System.out.println("Cavern location: " + cavern.getLocation());
-        	System.out.println("Best node: " + cavern.getBestNode());
-
         	if(path.isEmpty()) {
         		// get the path to the next best node
         		path = cavern.getPath(cavern.getLocation(), cavern.getBestNode());
         	}
-        	
-        	System.out.println("Empty path? (should never be true): " + path.isEmpty());
-        	
-        	System.out.println("Next steps: ");
-        	System.out.println(path.peek());
+
             // move towards the next unvisited node on the board
         	node = cavern.getNode(path.peek());
         	state.moveTo(path.pop());
-        	
-        	System.out.println("~MOVING!!*~~~~");
 
     	}
  
@@ -114,7 +104,7 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void escape(EscapeState state) {
-    	System.out.println(state.getVertices().toString());
+//    	System.out.println(state.getVertices().toString());
     	
 //    	// instantiate a pathfinder with the graph
 //    	Pathfinder pathfinder = new PathfinderImpl(state.getVertices());
