@@ -207,6 +207,11 @@ public class MyCavernImpl implements MyCavern {
 		return minimumNode.getId();
 	}
 	
+	@Override 
+	public void setAllPathsTo(long goal) {
+		getPath(goal, nodes.get(0).getId());
+	}
+	
 	private long getLast() {
 		if(!retracing) {
 			retracing = true;

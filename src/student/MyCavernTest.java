@@ -279,21 +279,18 @@ public class MyCavernTest {
 		cavern.getNode(11).addNeighbour(10);
 		
 		cavern.setAllPathsTo(6);
+		cavern.printState();
 		
 		long expected = 2;
 		long output = cavern.getNode(1).getLastNode().getId();
 		assertEquals(expected, output);
 		
-//		long expected = 3;
-//		long output = cavern.getNode(7).getLastNode().getId();
-//		assertEquals(expected, output);
-//		
-//		long expected = 7;
-//		long output = cavern.getNode(8).getLastNode().getId();
-//		assertEquals(expected, output);
-//		
-//		long expected = null;
-//		long output = cavern.getNode(6).getLastNode().getId();
-//		assertEquals(expected, output);
+		expected = 3;
+		output = cavern.getNode(7).getLastNode().getId();
+		assertEquals(expected, output);
+		
+		expected = 7;
+		output = cavern.getNode(8).getLastNode().getId();
+		assertEquals(expected, output);
 	}
 }
