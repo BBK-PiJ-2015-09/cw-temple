@@ -222,6 +222,36 @@ public class MyCavernImpl implements MyCavern {
 		getPath(goal, nodes.get(0).getId());
 	}
 	
+	@Override
+	public void reset() {
+		for(MyNode node : nodes) {
+			if(node.getVisited()) {
+				node.setUnvisited();
+			}
+			if(getRetracing()) {
+				setRetracing(false);
+			}
+			if(anyHistory()) {
+				history.clear();
+			}
+		}
+	}
+	
+	@Override
+	public boolean getRetracing() {
+		return retracing;
+	}
+	
+	@Override
+	public void setRetracing(boolean retracing) {
+		this.retracing = retracing;
+	}
+	
+	@Override
+	public boolean anyHistory() {
+		return !history.isEmpty();
+	}
+	
 	private long getLast() {
 		if(!retracing) {
 			retracing = true;
