@@ -30,6 +30,11 @@ public interface MyNode {
 	void setVisited();
 
 	/**
+	 * Set this node to visited.
+	 */
+	void setUnvisited();
+	
+	/**
 	 * Returns the (straight-line) distance of the current node from the goal.
 	 *
 	 * @return the distance, a long.

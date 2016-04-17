@@ -33,6 +33,16 @@ public class MyNodeTest {
 	}
 	
 	@Test
+	public void testsSetUnvisited() {
+		MyNode node = new MyNodeImpl(1, 1);
+		node.setVisited();
+		node.setUnvisited();
+		boolean expected = false;
+		boolean output = node.getVisited();
+		assertEquals(expected, output);
+	}
+	
+	@Test
 	public void testsGetDistance() {
 		MyNode node = new MyNodeImpl(1, 2);
 		long expected = 2;
