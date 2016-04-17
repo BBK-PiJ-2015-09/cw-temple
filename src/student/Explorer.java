@@ -120,9 +120,9 @@ public class Explorer {
     	cavern.setAllPathsTo(state.getExit().getId());
     	    	
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
-    	
+    	    	
     	if(cavern.getSize() > 20) {
-	       	while((state.getTimeRemaining()/18) > node.getPathLength())  {
+	       	while((state.getTimeRemaining()/19) > node.getPathLength())  {
 	        	// set location
 	    		cavern.setLocation(node.getId());
 	     		
