@@ -173,16 +173,20 @@ public class Explorer {
     }
     
     private ArrayList<Long> bestPath(EscapeState state, MyCavern cavern) {
-    	
+    	return tryPath(state, cavern);
+    }
+    
+    // test run - non-destructive. Make sure to mark gold as picked up in the cavern or it will double-count!
+    private ArrayList<Long> tryPath(EscapeState state, MyCavern cavern) {
     	Stack<Long> backwardsPath = new Stack<Long>();
-    	 
+   	 
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
     	long id = 0;
     	
     	int timeRemaining = state.getTimeRemaining();
     	int gold = 0;
     	
-       	while(timeRemaining/16 > node.getPathLength())  {
+       	while(timeRemaining / 16 > node.getPathLength())  {
         	// set location
     		cavern.setLocation(node.getId());
 
@@ -199,15 +203,14 @@ public class Explorer {
         	// to watch the actual time, and head for the exit early if this makes a path that's too long
         	timeRemaining = timeRemaining - 10;
 
-        	gold = gold + node.getGold();
+        	if(!node.getVisited()) {
+        		gold = gold + node.getGold();
+        	}
     	}
        	
+       	cavern.reset();
+       	
     	return new ArrayList<Long>(backwardsPath);
-    }
-    
-    // test run - non-destructive. Make sure to mark gold as picked up in the cavern or it will double-count!
-    private Stack<Long> tryPath() {
-    	
     }
 }
 
