@@ -118,5 +118,13 @@ public interface MyCavern {
 	 */
 	boolean anyHistory();
 	
+	/**
+	 * Return the node with the most gold, or second most, etc. 
+	 * 
+	 * @param the index of the node ordered by most gold. Pass 0 to get the max.
+	 * @return the long id of the node with max(+index) amount of gold. 
+	 */
+	long getMostGold(int index);
+	
 	void printState();
 }

@@ -349,4 +349,23 @@ public class MyCavernTest {
 		boolean output = cavern.getRetracing();
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsGetMostGold() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 1);
+		cavern.getNode(1).setGold(23);
+		cavern.addNode(2, 1);
+		cavern.getNode(2).setGold(15);
+		cavern.addNode(3, 1);
+		cavern.getNode(3).setGold(5);
+		cavern.setRetracing(false);
+		boolean expected = 1;
+		boolean output = cavern.getMostGold(0);
+		assertEquals(expected, output);
+		
+		expected = 3;
+		output = cavern.getMostGold(2);
+		assertEquals(expected, output);
+	}
 }
