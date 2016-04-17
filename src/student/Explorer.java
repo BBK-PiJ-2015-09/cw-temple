@@ -121,7 +121,7 @@ public class Explorer {
     	    	
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
     	
-       	while((state.getTimeRemaining()/14) > node.getPathLength())  {
+       	while((state.getTimeRemaining()/17) > node.getPathLength())  {
         	// set location
     		cavern.setLocation(node.getId());
      		
