@@ -111,6 +111,7 @@ public class Explorer {
     	MyCavern cavern = new MyCavernImpl();
     	for(Node node : state.getVertices()) {
     		cavern.addNode(node.getId());
+    		cavern.getNode(node.getId()).setGold(node.getTile().getGold());
     		for(Node neighbour : node.getNeighbours()) {
     			cavern.getNode(node.getId()).addNeighbour(neighbour.getId());
     		}
@@ -179,6 +180,7 @@ public class Explorer {
     	long id = 0;
     	
     	int timeRemaining = state.getTimeRemaining();
+    	int gold = 0;
     	
        	while(timeRemaining/16 > node.getPathLength())  {
         	// set location
@@ -197,14 +199,15 @@ public class Explorer {
         	// to watch the actual time, and head for the exit early if this makes a path that's too long
         	timeRemaining = timeRemaining - 10;
 
+        	gold = gold + node.getGold();
     	}
        	
     	return new ArrayList<Long>(backwardsPath);
     }
     
     // test run - non-destructive. Make sure to mark gold as picked up in the cavern or it will double-count!
-//    private Stack<Long> tryPath() {
-//    	
-//    }
+    private Stack<Long> tryPath() {
+    	
+    }
 }
 

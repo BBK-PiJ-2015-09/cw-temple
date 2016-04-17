@@ -10,7 +10,7 @@ public class MyNodeImpl implements MyNode {
 	private boolean searched;
 	private int pathLength;
 	private MyNode lastNode;
-	private int gold;
+	private int gold = 0;
 	
 	public MyNodeImpl(long id) {
 		this.id = id;
