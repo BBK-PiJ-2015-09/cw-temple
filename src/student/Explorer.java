@@ -50,68 +50,31 @@ public class Explorer {
 		// add the node to the cavern
 		cavern.addNode(state.getCurrentLocation(), state.getDistanceToTarget());
 		MyNode node = cavern.getNode(state.getCurrentLocation());
-
-		Stack<Long> path = new Stack<Long>();
-    	
-		// set location
-		cavern.setLocation(node.getId());
- 		
-    	// mark as visited
-    	node.setVisited();
 		
-		// add any new neighbours to the cavern and the node
-		for (game.NodeStatus neighbour : state.getNeighbours()) {
-			cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
-			node.addNeighbour(neighbour.getId());
-		}
+		Stack<Long> path = new Stack<Long>();
 		
     	while(state.getDistanceToTarget() != 0)  {
-   	
-        	if(cavern.getStepsSinceProgress() < 7) {
-        		
-        		// get the next move towards the next unvisited node on the board
-            	node = cavern.getNode(cavern.getNext());
-            	
-                // move towards the next unvisited node on the board
-        		state.moveTo(node.getId());
-        		
-        		// set location
-        		cavern.setLocation(node.getId());
-         		
-            	// mark as visited
-            	node.setVisited();
-            	
-               	// add any new neighbours to the cavern and the node
-            	for (game.NodeStatus neighbour : state.getNeighbours()) {
-            		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
-            		node.addNeighbour(neighbour.getId());
-            	}
-            	
-    		} else {
-			  	
-				// get the path to the next best node
-				path = cavern.getPath(cavern.getLocation(), cavern.getBestNode());
-        		
-        		while(!path.isEmpty()) {
-
-               		// move towards the next unvisited node on the board
-            		node = cavern.getNode(path.peek());
-            		state.moveTo(path.pop());
-            		
-            		// set location
-            		cavern.setLocation(node.getId());
-             		
-                	// mark as visited
-                	node.setVisited();
-            		
-    	       		// add any new neighbours to the cavern and the node
-            		for (game.NodeStatus neighbour : state.getNeighbours()) {
-            			cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
-            			node.addNeighbour(neighbour.getId());
-            		}
-        		}
+        	
+    		// set location
+    		cavern.setLocation(node.getId());
+     		
+        	// mark as visited
+        	node.setVisited();
+        	
+        	// add any new neighbours to the cavern and the node
+        	for (game.NodeStatus neighbour : state.getNeighbours()) {
+        		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
+        		node.addNeighbour(neighbour.getId());
         	}
- 
+        	
+        	if(path.isEmpty()) {
+        		// get the path to the next best node
+        		path = cavern.getPath(cavern.getLocation(), cavern.getBestNode());
+        	}
+
+            // move towards the next unvisited node on the board
+        	node = cavern.getNode(path.peek());
+        	state.moveTo(path.pop());
 
     	}
  
@@ -158,7 +121,6 @@ public class Explorer {
     	    	
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
     	
-    	// gather gold until the last moment
        	while((state.getTimeRemaining()/14) > node.getPathLength())  {
         	// set location
     		cavern.setLocation(node.getId());
@@ -179,8 +141,7 @@ public class Explorer {
     			}
     		}
     	}
-    	
-       	// move to the exit by the optimal route
+    		
     	while(!(state.getCurrentNode() == state.getExit())) {
     		long nextId = cavern.getNode(state.getCurrentNode().getId()).getLastNode().getId();
     		for (Node nextNode : state.getVertices()) {

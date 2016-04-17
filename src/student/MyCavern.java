@@ -96,26 +96,5 @@ public interface MyCavern {
 	 */
 	void setAllPathsTo(long goal);
 	
-	/**
-	 * Get the lowest distance ever reached.
-	 *
-	 * @return an int of the lowest distance reached.
-	 */
-	long getClosest();
-	
-	/**
-	 * Set the lowest distance ever reached.
-	 * 
-	 * @param closest a long of the lowest distance reached.
-	 */
-	void setClosest(long closest);
-	
-	/**
-	 * Get the number of steps since the distance was decreased.
-	 * 
-	 * @return an int of the number of steps since the distance was decreased.
-	 */
-	int getStepsSinceProgress();
-	
 	void printState();
 }

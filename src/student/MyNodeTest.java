@@ -40,16 +40,6 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 	
-
-	@Test
-	public void testsSetDistance() {
-		MyNode node = new MyNodeImpl(1, 1);
-		node.setDistance(10);
-		long expected = 10;
-		long output = node.getDistance();
-		assertEquals(expected, output);
-	}
-	
 	@Test
 	public void testsGetNeighbours() {
 		MyNode node = new MyNodeImpl(1, 1);
