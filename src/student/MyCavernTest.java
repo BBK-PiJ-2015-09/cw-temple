@@ -318,14 +318,19 @@ public class MyCavernTest {
 	}
 	
 	@Test
-	public void testsResetCavern() {
+	public void testsReset() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1);
 		cavern.getNode(1).setVisited();
+		cavern.setLocation(cavern.getNode(1).getId());
+		cavern.setRetracing(true);
+		
 		cavern.reset();
 		
 		boolean expected = false;
-		boolean output = cavern.getNode(1).getVisited();
+		boolean output;
+		
+		output = cavern.getNode(1).getVisited();
 		assertEquals(expected, output);
 
 		output = cavern.getRetracing();
