@@ -10,6 +10,7 @@ public class MyCavernImpl implements MyCavern {
 	private Stack<Long> history = new Stack();
 	private boolean retracing = false;
 	private long closest = Long.MAX_VALUE;
+	private int stepsSinceProgress = 0;
 	
 	public MyCavernImpl() {}
 	
@@ -53,6 +54,9 @@ public class MyCavernImpl implements MyCavern {
 		this.location = location;
 		if (getNode(location).getDistance() < closest) {
 			closest = getNode(location).getDistance();
+			stepsSinceProgress = 0;
+		} else {
+			stepsSinceProgress++;
 		}
 	}
 	
@@ -235,6 +239,10 @@ public class MyCavernImpl implements MyCavern {
 	@Override
 	public long getClosest() {
 		return closest;
+	}
+	
+	public int getStepsSinceProgress() {
+		return stepsSinceProgress;
 	}
 	
 	private long getLast() {
