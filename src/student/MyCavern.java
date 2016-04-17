@@ -101,14 +101,14 @@ public interface MyCavern {
 	 *
 	 * @return an int of the lowest distance reached.
 	 */
-	int getClosest();
+	long getClosest();
 	
 	/**
 	 * Set the lowest distance ever reached.
 	 * 
-	 * @param closest an int of the lowest distance reached.
+	 * @param closest a long of the lowest distance reached.
 	 */
-	void setClosest(int closest);
+	void setClosest(long closest);
 	
 	void printState();
 }

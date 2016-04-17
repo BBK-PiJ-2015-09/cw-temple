@@ -9,7 +9,7 @@ public class MyCavernImpl implements MyCavern {
 	private long location;
 	private Stack<Long> history = new Stack();
 	private boolean retracing = false;
-	private int closest;
+	private long closest = Long.MAX_VALUE;
 	
 	public MyCavernImpl() {}
 	
@@ -51,6 +51,9 @@ public class MyCavernImpl implements MyCavern {
 			history.push(this.location);
 		}
 		this.location = location;
+		if (getNode(location).getDistance() < closest) {
+			closest = getNode(location).getDistance();
+		}
 	}
 	
 	@Override
@@ -225,12 +228,12 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	@Override
-	public void setClosest(int closest) {
+	public void setClosest(long closest) {
 		this.closest = closest;
 	}
 	
 	@Override
-	public int getClosest() {
+	public long getClosest() {
 		return closest;
 	}
 	

@@ -49,14 +49,14 @@ public class MyCavernTest {
 	@Test
 	public void testsSetLocationUpdatesClosest() {
 		MyCavern cavern = new MyCavernImpl();
-		cavern.addNode(1, 1);
+		cavern.addNode(1, 2);
 		cavern.setLocation(1);
-		long expected = 1;
+		long expected = 2;
 		long output = cavern.getClosest();
 		assertEquals(expected, output);
 		cavern.addNode(2, 1);
 		cavern.setLocation(2);
-		expected = 2;
+		expected = 1;
 		output = cavern.getClosest();
 		assertEquals(expected, output);
 	}
@@ -346,8 +346,8 @@ public class MyCavernTest {
 		cavern.getNode(3).setDistance(36);
 		cavern.getNode(4).setDistance(1);
 		cavern.getNode(5).setDistance(2);
-		int expected = 4;
-		int output = cavern.getClosest();
+		long expected = 4;
+		long output = cavern.getClosest();
 		assertEquals(expected, output);
 	}
 
@@ -355,8 +355,8 @@ public class MyCavernTest {
 	public void testsSetClosest() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.setClosest(10);
-		int expected = 10;
-		int output = cavern.getClosest();
+		long expected = 10;
+		long output = cavern.getClosest();
 		assertEquals(expected, output);
 	}
 }
