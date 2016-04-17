@@ -364,4 +364,27 @@ public class MyCavernTest {
 		long output = cavern.getClosest();
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsGetStepsSinceProgress() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		cavern.getNode(1).setDistance(4);
+		cavern.setLocation(1);
+		cavern.addNode(2);
+		cavern.getNode(2).setDistance(3);
+		cavern.setLocation(2);
+		cavern.addNode(3);
+		cavern.getNode(3).setDistance(1);
+		cavern.setLocation(3);
+		cavern.addNode(4);
+		cavern.getNode(4).setDistance(36);
+		cavern.setLocation(4);
+		cavern.addNode(5);
+		cavern.getNode(5).setDistance(2);
+		cavern.setLocation(5);
+		long expected = 2;
+		long output = cavern.getStepsSinceProgress();
+		assertEquals(expected, output);
+	}
 }

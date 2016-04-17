@@ -110,5 +110,12 @@ public interface MyCavern {
 	 */
 	void setClosest(long closest);
 	
+	/**
+	 * Get the number of steps since the distance was decreased.
+	 * 
+	 * @return an int of the number of steps since the distance was decreased.
+	 */
+	int getStepsSinceProgress();
+	
 	void printState();
 }
