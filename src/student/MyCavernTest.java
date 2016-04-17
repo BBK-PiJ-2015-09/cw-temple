@@ -3,7 +3,6 @@ package student;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class MyCavernTest {
@@ -316,6 +315,23 @@ public class MyCavernTest {
 		long expected = 2;
 		long output = cavern.getNode(1).getLastNode().getId();
 		assertEquals(expected, output);
+	}
+	
+	@Test
+	public void testsResetCavern() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		cavern.getNode(1).setVisited();
+		cavern.reset();
+		
+		boolean expected = false;
+		boolean output = cavern.getNode(1).getVisited();
+		assertEquals(expected, output);
 
+		output = cavern.getRetracing();
+		assertEquals(expected, output);
+
+		output = cavern.anyHistory();
+		assertEquals(expected, output);
 	}
 }

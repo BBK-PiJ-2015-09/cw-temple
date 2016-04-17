@@ -25,7 +25,7 @@ public interface MyNode {
 	boolean getVisited();
 	
 	/**
-	 * Set this node to visited. Cannot be undone.
+	 * Set this node to visited.
 	 */
 	void setVisited();
 

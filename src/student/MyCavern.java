@@ -96,5 +96,20 @@ public interface MyCavern {
 	 */
 	void setAllPathsTo(long goal);
 	
+	/**
+	 * Reset the cavern variables as if it has not yet been visited.
+	 */
+	void reset();
+	
+	/**
+	 * Get if the cavern is currently retracing.
+	 */
+	void getRetracing();
+	
+	/**
+	 * Get if the cavern is currently retracing.
+	 */
+	void anyHistory();
+	
 	void printState();
 }
