@@ -337,16 +337,21 @@ public class MyCavernTest {
 	public void testsGetClosest() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1);
-		cavern.addNode(2);
-		cavern.addNode(3);
-		cavern.addNode(4);
-		cavern.addNode(5);
 		cavern.getNode(1).setDistance(4);
+		cavern.setLocation(1);
+		cavern.addNode(2);
 		cavern.getNode(2).setDistance(3);
+		cavern.setLocation(2);
+		cavern.addNode(3);
 		cavern.getNode(3).setDistance(36);
+		cavern.setLocation(3);
+		cavern.addNode(4);
 		cavern.getNode(4).setDistance(1);
+		cavern.setLocation(4);
+		cavern.addNode(5);
 		cavern.getNode(5).setDistance(2);
-		long expected = 4;
+		cavern.setLocation(5);
+		long expected = 1;
 		long output = cavern.getClosest();
 		assertEquals(expected, output);
 	}
