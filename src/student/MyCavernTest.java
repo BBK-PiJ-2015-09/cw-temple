@@ -47,6 +47,21 @@ public class MyCavernTest {
 	}
 	
 	@Test
+	public void testsSetLocationUpdatesClosest() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 1);
+		cavern.setLocation(1);
+		long expected = 1;
+		long output = cavern.getClosest();
+		assertEquals(expected, output);
+		cavern.addNode(2, 1);
+		cavern.setLocation(2);
+		expected = 2;
+		output = cavern.getClosest();
+		assertEquals(expected, output);
+	}
+	
+	@Test
 	public void testsGetNextUnvisited() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
