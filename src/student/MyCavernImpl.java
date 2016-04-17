@@ -1,6 +1,7 @@
 package student;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
 
 public class MyCavernImpl implements MyCavern {
@@ -250,6 +251,12 @@ public class MyCavernImpl implements MyCavern {
 	@Override
 	public boolean anyHistory() {
 		return !history.isEmpty();
+	}
+	
+	@Override
+	public long getMostGold(int index) {
+		Collections.sort(nodes, MyNodeImpl.byMostGold());
+		return nodes.get(index).getId();
 	}
 	
 	private long getLast() {

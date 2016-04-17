@@ -1,6 +1,7 @@
 package student;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class MyNodeImpl implements MyNode {
 	private long id;
@@ -19,6 +20,15 @@ public class MyNodeImpl implements MyNode {
 	public MyNodeImpl(long id, long distance) {
 		this.id = id;
 		this.distance = distance;
+	}
+	
+	public static Comparator<MyNode> byMostGold() {
+		Comparator<MyNode> comp = new Comparator<MyNode>(){
+		     public int compare(MyNode firstNode, MyNode secondNode) {
+		        return secondNode.getGold() - firstNode.getGold();
+		    }        
+		};
+		return comp;
 	}
 	
 	@Override

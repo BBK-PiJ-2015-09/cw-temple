@@ -222,7 +222,7 @@ public class MyCavernTest {
 		
 		Stack<Long> expected = new Stack<Long>(); 
 		expected.push(2L);
-		Stack<Long> output = output = cavern.getPath(1L,2L);
+		Stack<Long> output = cavern.getPath(1L,2L);
 		assertEquals(expected, output);
 	}
 	
@@ -360,8 +360,8 @@ public class MyCavernTest {
 		cavern.addNode(3, 1);
 		cavern.getNode(3).setGold(5);
 		cavern.setRetracing(false);
-		boolean expected = 1;
-		boolean output = cavern.getMostGold(0);
+		long expected = 1;
+		long output = cavern.getMostGold(0);
 		assertEquals(expected, output);
 		
 		expected = 3;
