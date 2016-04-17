@@ -89,4 +89,12 @@ public class MyNodeTest {
 		assertEquals(expected, output);
 	}
 	
+	@Test
+	public void testsSetGold() {
+		MyNode node = new MyNodeImpl(1, 1);
+		node.setGold(23);
+		int expected = 23;
+		int output = node.getGold();
+		assertEquals(expected, output);
+	}
 }
