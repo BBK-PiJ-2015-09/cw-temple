@@ -37,6 +37,11 @@ public class MyNodeImpl implements MyNode {
 	}
 	
 	@Override
+	public void setUnvisited() {
+		visited = false;
+	}
+	
+	@Override
 	public long getDistance() {
 		return distance;
 	}
