@@ -3,6 +3,7 @@ package student;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class MyCavernTest {
@@ -222,7 +223,7 @@ public class MyCavernTest {
 		
 		Stack<Long> expected = new Stack<Long>(); 
 		expected.push(2L);
-		Stack<Long> output = cavern.getPath(1L,2L);
+		Stack<Long> output = output = cavern.getPath(1L,2L);
 		assertEquals(expected, output);
 	}
 	
@@ -315,57 +316,6 @@ public class MyCavernTest {
 		long expected = 2;
 		long output = cavern.getNode(1).getLastNode().getId();
 		assertEquals(expected, output);
-	}
-	
-	@Test
-	public void testsReset() {
-		MyCavern cavern = new MyCavernImpl();
-		cavern.addNode(1);
-		cavern.getNode(1).setVisited();
-		cavern.setLocation(cavern.getNode(1).getId());
-		cavern.setRetracing(true);
-		
-		cavern.reset();
-		
-		boolean expected = false;
-		boolean output;
-		
-		output = cavern.getNode(1).getVisited();
-		assertEquals(expected, output);
 
-		output = cavern.getRetracing();
-		assertEquals(expected, output);
-
-		output = cavern.anyHistory();
-		assertEquals(expected, output);
-	}
-	
-	@Test
-	public void testsSetRetracing() {
-		MyCavern cavern = new MyCavernImpl();
-		cavern.addNode(1, 1);
-		cavern.setRetracing(false);
-		boolean expected = false;
-		boolean output = cavern.getRetracing();
-		assertEquals(expected, output);
-	}
-	
-	@Test
-	public void testsGetMostGold() {
-		MyCavern cavern = new MyCavernImpl();
-		cavern.addNode(1, 1);
-		cavern.getNode(1).setGold(23);
-		cavern.addNode(2, 1);
-		cavern.getNode(2).setGold(15);
-		cavern.addNode(3, 1);
-		cavern.getNode(3).setGold(5);
-		cavern.setRetracing(false);
-		long expected = 1;
-		long output = cavern.getMostGold(0);
-		assertEquals(expected, output);
-		
-		expected = 3;
-		output = cavern.getMostGold(2);
-		assertEquals(expected, output);
 	}
 }

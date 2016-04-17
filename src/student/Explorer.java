@@ -106,33 +106,19 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void escape(EscapeState state) {
-
+    	
     	// build a cavern out of the vertices
     	MyCavern cavern = new MyCavernImpl();
     	for(Node node : state.getVertices()) {
     		cavern.addNode(node.getId());
-    		cavern.getNode(node.getId()).setGold(node.getTile().getGold());
     		for(Node neighbour : node.getNeighbours()) {
     			cavern.getNode(node.getId()).addNeighbour(neighbour.getId());
     		}
     	}
-
+        
     	// set the next step on the shortest path to the exit on each node
     	cavern.setAllPathsTo(state.getExit().getId());
-    	
-    	// move through the bestPath
-    	for(long nextId : bestPath(state, cavern)) {
-     		for (Node nextNode : state.getVertices()) {
-    			if(nextNode.getId() == nextId) {
-    				state.moveTo(nextNode);
-    			}
-    			if (state.getCurrentNode().getTile().getGold() > 0) {
-    				state.pickUpGold();
-    			}
-    		}
-    	}
-    	
-    	// if there's time, walk around a bit more    	    	
+    	    	
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
     	
        	while((state.getTimeRemaining()/14) > node.getPathLength())  {
@@ -155,9 +141,8 @@ public class Explorer {
     			}
     		}
     	}
-    	
-    	// move to the exit
-    	while(state.getCurrentNode() != state.getExit()) {
+    		
+    	while(!(state.getCurrentNode() == state.getExit())) {
     		long nextId = cavern.getNode(state.getCurrentNode().getId()).getLastNode().getId();
     		for (Node nextNode : state.getVertices()) {
     			if(nextNode.getId() == nextId) {
@@ -168,104 +153,8 @@ public class Explorer {
     			}
     		}
     	}  	
-    	
+  
     	return;
-    }
-    
-    private ArrayList<Long> bestPath(EscapeState state, MyCavern cavern) {
-    	ArrayList<Long> best = new ArrayList<Long>();
-    	int loop = 0;
-    	int bestGold = 0;
-    	while(loop < 10) {
-    		if(tryPathGetGold(state, cavern, loop) > bestGold) {
-    			best = tryPath(state, cavern, loop);
-    			bestGold = tryPathGetGold(state, cavern, loop);
-    		}
-    		loop++;
-    	}
-    	return best;
-    }
-    
-    // test run - non-destructive. Make sure to mark gold as picked up in the cavern or it will double-count!
-    private ArrayList<Long> tryPath(EscapeState state, MyCavern cavern, int maxGoldIndex) {
-    	
-    	Stack<Long> backwardsPath = new Stack<Long>();
-   	 
-    	MyNode node = cavern.getNode(state.getCurrentNode().getId());
-    	long id = 0;
-    	
-    	int timeRemaining = state.getTimeRemaining();
-    	int gold = 0;
-    	
-    	Stack<Long> path = cavern.getPath(node.getId(), cavern.getMostGold(maxGoldIndex));
-    	System.out.println(path);
-       	while(timeRemaining / 55 > node.getPathLength())  {
-        	// set location
-    		cavern.setLocation(node.getId());
-
-        	// mark as visited
-        	node.setVisited();
-       		
-       		// first move to the maxGold index
-       		if(!path.isEmpty()) {
-            	id = path.pop();
-       		} else {
-       		// get the next move towards the next unvisited node on the board
-            	id = cavern.getNext();
-       		}
-       		
-        	node = cavern.getNode(id);
-        	backwardsPath.push(id);
-       		
-        	// approximate the time remaining and stop after that point - the actual method will
-        	// to watch the actual time, and head for the exit early if this makes a path that's too long
-        	timeRemaining = timeRemaining - 10;
-
-        	if(!node.getVisited()) {
-        		gold = gold + node.getGold();
-        	}
-    	}
-       	
-       	cavern.reset();
-       	
-    	return new ArrayList<Long>(backwardsPath);
-    }
-    
-    // test run - non-destructive. Make sure to mark gold as picked up in the cavern or it will double-count!
-    private int tryPathGetGold(EscapeState state, MyCavern cavern, int maxGoldIndex) {
-    	Stack<Long> backwardsPath = new Stack<Long>();
-   	 
-    	MyNode node = cavern.getNode(state.getCurrentNode().getId());
-    	long id = 0;
-    	
-    	int timeRemaining = state.getTimeRemaining();
-    	int gold = 0;
-    	
-       	while(timeRemaining / 16 > node.getPathLength())  {
-        	// set location
-    		cavern.setLocation(node.getId());
-
-        	// mark as visited
-        	node.setVisited();
- 
-        	// get the next move towards the next unvisited node on the board
-        	id = cavern.getNext();
-
-        	node = cavern.getNode(id);
-        	backwardsPath.push(id);
-
-        	// approximate the time remaining and stop after that point - the actual method will
-        	// to watch the actual time, and head for the exit early if this makes a path that's too long
-        	timeRemaining = timeRemaining - 10;
-
-        	if(!node.getVisited()) {
-        		gold = gold + node.getGold();
-        	}
-    	}
-       	
-       	cavern.reset();
-       	
-    	return gold;
     }
 }
 

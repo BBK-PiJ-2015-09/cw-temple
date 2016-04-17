@@ -25,15 +25,10 @@ public interface MyNode {
 	boolean getVisited();
 	
 	/**
-	 * Set this node to visited.
+	 * Set this node to visited. Cannot be undone.
 	 */
 	void setVisited();
 
-	/**
-	 * Set this node to visited.
-	 */
-	void setUnvisited();
-	
 	/**
 	 * Returns the (straight-line) distance of the current node from the goal.
 	 *
@@ -79,23 +74,9 @@ public interface MyNode {
 	/**
 	 * Set the last node visited on the path.
 	 * 
-	 * @param node the last MyNode visited.
+	 * @param node the last node visited.
 	 */
 	void setLastNode(MyNode node);
 
-	/**
-	 * Set the amount of gold on the node.
-	 * 
-	 * @param gold an int of the amount of gold.
-	 */
-	void setGold(int gold);
-	
-	/**
-	 * Get the amount of gold on the node.
-	 * 
-	 * @return an int of the amount of gold.
-	 */
-	int getGold();
-	
 	void printState();
 }

@@ -96,35 +96,5 @@ public interface MyCavern {
 	 */
 	void setAllPathsTo(long goal);
 	
-	/**
-	 * Reset the cavern variables as if it has not yet been visited.
-	 */
-	void reset();
-	
-	/**
-	 * Get if the cavern is currently retracing.
-	 */
-	boolean getRetracing();
-
-	/**
-	 * Set if the cavern is currently retracing.
-	 * 
-	 * @param retracing, a boolean.
-	 */
-	void setRetracing(boolean retracing);
-	
-	/**
-	 * Get if the cavern currently has any history.
-	 */
-	boolean anyHistory();
-	
-	/**
-	 * Return the node with the most gold, or second most, etc. 
-	 * 
-	 * @param the index of the node ordered by most gold. Pass 0 to get the max.
-	 * @return the long id of the node with max(+index) amount of gold. 
-	 */
-	long getMostGold(int index);
-	
 	void printState();
 }

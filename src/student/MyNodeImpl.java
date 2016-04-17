@@ -1,7 +1,6 @@
 package student;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class MyNodeImpl implements MyNode {
 	private long id;
@@ -11,7 +10,6 @@ public class MyNodeImpl implements MyNode {
 	private boolean searched;
 	private int pathLength;
 	private MyNode lastNode;
-	private int gold = 0;
 	
 	public MyNodeImpl(long id) {
 		this.id = id;
@@ -20,15 +18,6 @@ public class MyNodeImpl implements MyNode {
 	public MyNodeImpl(long id, long distance) {
 		this.id = id;
 		this.distance = distance;
-	}
-	
-	public static Comparator<MyNode> byMostGold() {
-		Comparator<MyNode> comp = new Comparator<MyNode>(){
-		     public int compare(MyNode firstNode, MyNode secondNode) {
-		        return secondNode.getGold() - firstNode.getGold();
-		    }        
-		};
-		return comp;
 	}
 	
 	@Override
@@ -44,11 +33,6 @@ public class MyNodeImpl implements MyNode {
 	@Override
 	public void setVisited() {
 		visited = true;
-	}
-	
-	@Override
-	public void setUnvisited() {
-		visited = false;
 	}
 	
 	@Override
@@ -86,14 +70,6 @@ public class MyNodeImpl implements MyNode {
 	@Override
 	public void setLastNode(MyNode lastNode) {
 		this.lastNode = lastNode;
-	}
-	
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-	
-	public int getGold() {
-		return gold;
 	}
 	
 	public void printState() {

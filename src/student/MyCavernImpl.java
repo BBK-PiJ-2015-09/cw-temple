@@ -1,13 +1,13 @@
 package student;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class MyCavernImpl implements MyCavern {
 	private ArrayList<MyNode> nodes = new ArrayList<>();
 	private long location;
-	private Stack<Long> history = new Stack<Long>();
+	private Stack<Long> history = new Stack();
 	private boolean retracing = false;
 	
 	public MyCavernImpl() {}
@@ -221,42 +221,6 @@ public class MyCavernImpl implements MyCavern {
 	@Override 
 	public void setAllPathsTo(long goal) {
 		getPath(goal, nodes.get(0).getId());
-	}
-	
-	@Override
-	public void reset() {
-		for(MyNode node : nodes) {
-			if(node.getVisited()) {
-				node.setUnvisited();
-			}
-			if(getRetracing()) {
-				setRetracing(false);
-			}
-			if(anyHistory()) {
-				history.clear();
-			}
-		}
-	}
-	
-	@Override
-	public boolean getRetracing() {
-		return retracing;
-	}
-	
-	@Override
-	public void setRetracing(boolean retracing) {
-		this.retracing = retracing;
-	}
-	
-	@Override
-	public boolean anyHistory() {
-		return !history.isEmpty();
-	}
-	
-	@Override
-	public long getMostGold(int index) {
-		Collections.sort(nodes, MyNodeImpl.byMostGold());
-		return nodes.get(index).getId();
 	}
 	
 	private long getLast() {
