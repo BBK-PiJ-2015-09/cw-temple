@@ -121,27 +121,29 @@ public class Explorer {
     	    	
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
     	
-       	while((state.getTimeRemaining()/17) > node.getPathLength())  {
-        	// set location
-    		cavern.setLocation(node.getId());
-     		
-        	// mark as visited
-        	node.setVisited();
- 
-        	// get the next move towards the next unvisited node on the board
-        	node = cavern.getNode(cavern.getNext());
-        	
-            // move towards the next unvisited node on the board
-    		for (Node nextNode : state.getVertices()) {
-    			if(nextNode.getId() == node.getId()) {
-    				state.moveTo(nextNode);
-    			}
-    			if (state.getCurrentNode().getTile().getGold() > 0) {
-    				state.pickUpGold();
-    			}
-    		}
+    	if(cavern.getSize() > 20) {
+	       	while((state.getTimeRemaining()/18) > node.getPathLength())  {
+	        	// set location
+	    		cavern.setLocation(node.getId());
+	     		
+	        	// mark as visited
+	        	node.setVisited();
+	 
+	        	// get the next move towards the next unvisited node on the board
+	        	node = cavern.getNode(cavern.getNext());
+	        	
+	            // move towards the next unvisited node on the board
+	    		for (Node nextNode : state.getVertices()) {
+	    			if(nextNode.getId() == node.getId()) {
+	    				state.moveTo(nextNode);
+	    			}
+	    			if (state.getCurrentNode().getTile().getGold() > 0) {
+	    				state.pickUpGold();
+	    			}
+	    		}
+	    	}
     	}
-    		
+    	
     	while(!(state.getCurrentNode() == state.getExit())) {
     		long nextId = cavern.getNode(state.getCurrentNode().getId()).getLastNode().getId();
     		for (Node nextNode : state.getVertices()) {
