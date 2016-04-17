@@ -334,4 +334,14 @@ public class MyCavernTest {
 		output = cavern.anyHistory();
 		assertEquals(expected, output);
 	}
+	
+	@Test
+	public void testsSetRetracing() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1, 1);
+		cavern.setRetracing(false);
+		boolean expected = false;
+		boolean output = cavern.getRetracing();
+		assertEquals(expected, output);
+	}
 }

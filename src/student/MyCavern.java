@@ -104,12 +104,19 @@ public interface MyCavern {
 	/**
 	 * Get if the cavern is currently retracing.
 	 */
-	void getRetracing();
+	boolean getRetracing();
+
+	/**
+	 * Set if the cavern is currently retracing.
+	 * 
+	 * @param retracing, a boolean.
+	 */
+	void setRetracing(boolean retracing);
 	
 	/**
-	 * Get if the cavern is currently retracing.
+	 * Get if the cavern currently has any history.
 	 */
-	void anyHistory();
+	boolean anyHistory();
 	
 	void printState();
 }
