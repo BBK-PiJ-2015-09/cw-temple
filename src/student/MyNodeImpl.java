@@ -10,6 +10,7 @@ public class MyNodeImpl implements MyNode {
 	private boolean searched;
 	private int pathLength;
 	private MyNode lastNode;
+	private int gold;
 	
 	public MyNodeImpl(long id) {
 		this.id = id;
@@ -70,6 +71,14 @@ public class MyNodeImpl implements MyNode {
 	@Override
 	public void setLastNode(MyNode lastNode) {
 		this.lastNode = lastNode;
+	}
+	
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	
+	public int getGold() {
+		return gold;
 	}
 	
 	public void printState() {
