@@ -96,5 +96,12 @@ public interface MyCavern {
 	 */
 	void setAllPathsTo(long goal);
 	
+	/**
+	 * Return the size of the cavern.
+	 * 
+	 * @return an int of the number of nodes in the cavern.
+	 */
+	int getSize();
+	
 	void printState();
 }

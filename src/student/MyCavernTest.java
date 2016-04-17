@@ -316,6 +316,18 @@ public class MyCavernTest {
 		long expected = 2;
 		long output = cavern.getNode(1).getLastNode().getId();
 		assertEquals(expected, output);
-
+	}
+	
+	@Test
+	public void testsGetSize() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		cavern.addNode(2);
+		cavern.addNode(3);
+		cavern.addNode(4);
+		cavern.addNode(5);
+		int expected = 5;
+		int output = cavern.getSize();
+		assertEquals(expected, output);
 	}
 }
