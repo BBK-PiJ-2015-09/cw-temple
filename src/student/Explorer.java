@@ -125,9 +125,7 @@ public class Explorer {
 	    			if(nextNode.getId() == node.getId()) {
 	    				state.moveTo(nextNode);
 	    			}
-	    			if (state.getCurrentNode().getTile().getGold() > 0) {
-	    				state.pickUpGold();
-	    			}
+	    			getGold(state);
 	    		}
 	    	}
     	}
@@ -138,13 +136,17 @@ public class Explorer {
     			if(nextNode.getId() == nextId) {
     				state.moveTo(nextNode);
     			}
-    			if (state.getCurrentNode().getTile().getGold() > 0) {
-    				state.pickUpGold();
-    			}
+    			getGold(state);
     		}
     	}
 
     	return;
+    }
+    
+    private void getGold(EscapeState state) {
+		if (state.getCurrentNode().getTile().getGold() > 0) {
+			state.pickUpGold();
+		}
     }
     
     private MyCavern buildExploreCavern(ExplorationState state) {
