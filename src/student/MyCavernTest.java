@@ -2,14 +2,20 @@ package student;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 import java.util.Stack;
 
 public class MyCavernTest {
+	MyCavern cavern;
+
+	@Before
+	public void buildCavern() {
+		cavern = new MyCavernImpl();
+	}
 
 	@Test
 	public void testsAddNodeById() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1);
 		long expected = 1;
 		long output = cavern.getNode(1).getId();
@@ -18,7 +24,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsAddNode() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		long expected = 1;
 		long output = cavern.getNode(1).getId();
@@ -27,7 +32,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsAddNodeOnlyOnce() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.addNode(1, 1);
 		long expected = 1;
@@ -37,7 +41,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsSetLocation() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.setLocation(1);
 		long expected = 1;
@@ -47,7 +50,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetNextUnvisited() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.setLocation(1);
 		cavern.getNode(1).addNeighbour(2);
@@ -62,7 +64,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetNextRetracesSteps() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.getNode(1).setVisited();
 		cavern.getNode(1).addNeighbour(2);
@@ -92,7 +93,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetNextKeepsRetracingToUnvisited() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.getNode(1).setVisited();
 		cavern.getNode(1).addNeighbour(2);
@@ -127,7 +127,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetNextChoosesLeastDistance() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 3);
 		cavern.getNode(1).setVisited();
 		cavern.getNode(1).addNeighbour(2);
@@ -147,7 +146,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsSetAllPathsInfinite() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.setAllPathsInfinite();
 		int expected = Integer.MAX_VALUE;
@@ -157,7 +155,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetPath() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.getNode(1).addNeighbour(2);
 		cavern.addNode(2, 1);
@@ -204,7 +201,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetPathSecondStep() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(0, 2);
 		cavern.getNode(0).addNeighbour(1);
 		cavern.getNode(0).setVisited();
@@ -228,7 +224,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetBestNode() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.getNode(1).setVisited();
 		cavern.addNode(2, 2);
@@ -242,7 +237,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsSetAllPaths() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
 		cavern.getNode(1).addNeighbour(2);
 		cavern.addNode(2, 1);
@@ -294,7 +288,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsSetAllPathsFromMiddle() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(5);
 		cavern.getNode(5).addNeighbour(3);
 		cavern.addNode(1);
@@ -318,7 +311,6 @@ public class MyCavernTest {
 
 	@Test
 	public void testsGetSize() {
-		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1);
 		cavern.addNode(2);
 		cavern.addNode(3);
