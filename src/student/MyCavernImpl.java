@@ -1,13 +1,12 @@
 package student;
 
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class MyCavernImpl implements MyCavern {
 	private ArrayList<MyNode> nodes = new ArrayList<>();
 	private long location;
-	private Stack<Long> history = new Stack();
+	private Stack<Long> history = new Stack<Long>();
 	private boolean retracing = false;
 
 	public MyCavernImpl() {}
@@ -226,12 +225,6 @@ public class MyCavernImpl implements MyCavern {
 	@Override
 	public int getSize() {
 		return nodes.size();
-	}
-
-	@Override
-	public void visit(long id) {
-		location = id;
-		getNode(id).setVisited();
 	}
 	
 	private long getLast() {
