@@ -78,5 +78,4 @@ public interface MyNode {
 	 */
 	void setLastNode(MyNode node);
 
-	void printState();
 }

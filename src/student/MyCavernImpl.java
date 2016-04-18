@@ -73,40 +73,6 @@ public class MyCavernImpl implements MyCavern {
 		}
 	}
 
-	private long getNearest(ArrayList<MyNode> nodes) {
-		MyNode nearest = nodes.get(0);
-		for(MyNode node : nodes) {
-			if(node.getDistance() < nearest.getDistance()) {
-				nearest = node;
-			}
-		}
-		return nearest.getId();
-	}
-
-	private void startRetracing() {
-		if(!retracing) {
-			retracing = true;
-		}
-	}
-
-	private void stopRetracing() {
-		if(retracing) {
-			retracing = false;
-		}
-	}
-
-	private ArrayList<MyNode> addNewNeighbours() {
-		ArrayList<MyNode> options = new ArrayList<>();
-		MyNode neighbour;
-		for(long id : getNode(location).getNeighbours()) {
-			neighbour = getNode(id);
-			if(neighbour.getVisited() == false) {
-				options.add(neighbour);
-			}
-		}
-		return options;
-	}
-
 	@Override
 	public void setAllPathsInfinite() {
 		for(MyNode node : nodes) {
@@ -116,24 +82,8 @@ public class MyCavernImpl implements MyCavern {
 		}
 	}
 
-	public void printState() {
-		for(MyNode node : nodes) {
-			node.printState();
-			System.out.println("-------");
-		}
-		System.out.println("**********");
-
-	}
-
-	private ArrayList<MyNode> buildUnsearched() {
-		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
-		for(MyNode newNode : nodes) {
-			unsearchedNodes.add(newNode);
-		}
-		return unsearchedNodes;
-	}
-
 	@Override
+	// Implementation of Djikstra's Algorithm.
 	public Stack<Long> getPath(long start, long end) {
 		MyNode minimumNode = new MyNodeImpl(Long.MAX_VALUE);
 		MyNode currentNode;
@@ -193,27 +143,6 @@ public class MyCavernImpl implements MyCavern {
 		return buildPath(end, start);
 	}
 
-	private void setNeighbouringPaths(ArrayList<MyNode> neighbours, MyNode currentNode) {
-		for(MyNode neighbour : neighbours) {
-			// if the neighbour's pathlength is greater than this node's pathlength + 1:
-			if(neighbour.getPathLength() > (currentNode.getPathLength() + 1)) {
-				// set its pathlength to pathlength + 1
-				neighbour.setPathLength(currentNode.getPathLength() + 1);
-				// set the neighbour's lastNode to this node
-				neighbour.setLastNode(currentNode);
-			}
-		}
-	}
-
-	private Stack<Long> buildPath(long end, long start) {
-		Stack<Long> output = new Stack<Long>();
-		while(end != start) {
-			output.push(end);
-			end = getNode(end).getLastNode().getId();
-		}
-		return output;
-	}
-
 	@Override
 	public long getBestNode() {
 		ArrayList<MyNode> unvisitedNodes = new ArrayList<MyNode>();
@@ -239,4 +168,67 @@ public class MyCavernImpl implements MyCavern {
 		return history.pop();
 	}
 
+	private void setNeighbouringPaths(ArrayList<MyNode> neighbours, MyNode currentNode) {
+		for(MyNode neighbour : neighbours) {
+			// if the neighbour's pathlength is greater than this node's pathlength + 1:
+			if(neighbour.getPathLength() > (currentNode.getPathLength() + 1)) {
+				// set its pathlength to pathlength + 1
+				neighbour.setPathLength(currentNode.getPathLength() + 1);
+				// set the neighbour's lastNode to this node
+				neighbour.setLastNode(currentNode);
+			}
+		}
+	}
+
+	private Stack<Long> buildPath(long end, long start) {
+		Stack<Long> output = new Stack<Long>();
+		while(end != start) {
+			output.push(end);
+			end = getNode(end).getLastNode().getId();
+		}
+		return output;
+	}
+	
+
+	private ArrayList<MyNode> buildUnsearched() {
+		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
+		for(MyNode newNode : nodes) {
+			unsearchedNodes.add(newNode);
+		}
+		return unsearchedNodes;
+	}
+
+	private void startRetracing() {
+		if(!retracing) {
+			retracing = true;
+		}
+	}
+
+	private void stopRetracing() {
+		if(retracing) {
+			retracing = false;
+		}
+	}
+
+	private ArrayList<MyNode> addNewNeighbours() {
+		ArrayList<MyNode> options = new ArrayList<>();
+		MyNode neighbour;
+		for(long id : getNode(location).getNeighbours()) {
+			neighbour = getNode(id);
+			if(neighbour.getVisited() == false) {
+				options.add(neighbour);
+			}
+		}
+		return options;
+	}
+	
+	private long getNearest(ArrayList<MyNode> nodes) {
+		MyNode nearest = nodes.get(0);
+		for(MyNode node : nodes) {
+			if(node.getDistance() < nearest.getDistance()) {
+				nearest = node;
+			}
+		}
+		return nearest.getId();
+	}
 }

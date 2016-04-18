@@ -73,7 +73,7 @@ public interface MyCavern {
 	void setAllPathsInfinite();
 
 	/**
-	 * Return the shortest path between two nodes.
+	 * Return a stack containing the shortest path between two nodes.
 	 *
 	 * @param start the id of the starting node
 	 * @param end the id of the ending node
@@ -104,5 +104,4 @@ public interface MyCavern {
 	 */
 	int getSize();
 
-	void printState();
 }
