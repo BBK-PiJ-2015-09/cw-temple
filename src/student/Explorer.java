@@ -119,28 +119,25 @@ public class Explorer {
 
 	        	// get the next move towards the next unvisited node on the board
 	        	node = cavern.getNode(cavern.getNext());
-
-	            // move towards the next unvisited node on the board
-	    		for (Node nextNode : state.getVertices()) {
-	    			if(nextNode.getId() == node.getId()) {
-	    				state.moveTo(nextNode);
-	    			}
-	    			getGold(state);
-	    		}
+	        	makeEscapeMove(state, node.getId());
 	    	}
     	}
 
     	while(!(state.getCurrentNode() == state.getExit())) {
     		long nextId = cavern.getNode(state.getCurrentNode().getId()).getLastNode().getId();
-    		for (Node nextNode : state.getVertices()) {
-    			if(nextNode.getId() == nextId) {
-    				state.moveTo(nextNode);
-    			}
-    			getGold(state);
-    		}
+    		makeEscapeMove(state, nextId);
     	}
 
     	return;
+    }
+    
+    private void makeEscapeMove(EscapeState state, long id) {
+		for (Node nextNode : state.getVertices()) {
+			if(nextNode.getId() == id) {
+				state.moveTo(nextNode);
+			}
+			getGold(state);
+		}
     }
     
     private void getGold(EscapeState state) {
