@@ -1,4 +1,4 @@
-My initial solution to the Explore phase was fairly naive, just looking at neighbouring cells and choosing the closest. I added history to cope withdead ends, which worked quite well because I had to stop keeping history while retracing steps, so dead ends would be permanently cut off from the
+My initial solution to the Explore phase was fairly naive, just looking at neighbouring cells and choosing the closest. I added history to cope with dead ends, which worked quite well because I had to stop keeping history while retracing steps, so dead ends would be permanently cut off from the
 search.
 
 When I got to the Escape phase I realised how good it would be to be able to have a method which would calculate the optimal path between two nodes. I
@@ -22,7 +22,7 @@ time to implement it safely.
 I could also add more testing to the Explorer class; as well as have copied the implementation of Djikstra from the given code, which is probably
 better than mine. I could also have searched for the pizza, which I spotted a couple of times.
 
-The style and DRYness of my code could also have been improved a lot with another day or two of work - as it is it's not particularly beautiful or easy to read! And many methods are far longer than they should be.
+The style and DRYness of my code could also have been improved a lot with another day or two of work - as it is it's not particularly beautiful or easy to read! Many methods are far longer than they should be.
 
 I genuinely enjoyed this coursework, and learned a lot, particularly about Djikstra's algorithm and pathfinding in general. I completed this coursework
 without a partner.
