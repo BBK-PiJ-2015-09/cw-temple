@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import java.util.Stack;
 
 public class MyCavernTest {
-	
+
 	@Test
 	public void testsAddNodeById() {
 		MyCavern cavern = new MyCavernImpl();
@@ -16,7 +16,7 @@ public class MyCavernTest {
 		long output = cavern.getNode(1).getId();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsAddNode() {
 		MyCavern cavern = new MyCavernImpl();
@@ -25,7 +25,7 @@ public class MyCavernTest {
 		long output = cavern.getNode(1).getId();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsAddNodeOnlyOnce() {
 		MyCavern cavern = new MyCavernImpl();
@@ -35,7 +35,7 @@ public class MyCavernTest {
 		long output = cavern.size();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsSetLocation() {
 		MyCavern cavern = new MyCavernImpl();
@@ -45,7 +45,7 @@ public class MyCavernTest {
 		long output = cavern.getLocation();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetNextUnvisited() {
 		MyCavern cavern = new MyCavernImpl();
@@ -60,8 +60,8 @@ public class MyCavernTest {
 		long output = cavern.getNext();
 		assertEquals(expected, output);
 	}
-	
-	@Test 
+
+	@Test
 	public void testsGetNextRetracesSteps() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
@@ -91,7 +91,7 @@ public class MyCavernTest {
 		assertEquals(expected, output);
 	}
 
-	@Test 
+	@Test
 	public void testsGetNextKeepsRetracingToUnvisited() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
@@ -125,8 +125,8 @@ public class MyCavernTest {
 		long output = cavern.getNext();
 		assertEquals(expected, output);
 	}
-	
-	@Test 
+
+	@Test
 	public void testsGetNextChoosesLeastDistance() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 3);
@@ -145,17 +145,17 @@ public class MyCavernTest {
 		long output = cavern.getNext();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsSetAllPathsInfinite() {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1, 1);
-		cavern.setAllPathsInfinite();		
+		cavern.setAllPathsInfinite();
 		int expected = Integer.MAX_VALUE;
 		int output = cavern.getNode(1).getPathLength();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetPath() {
 		MyCavern cavern = new MyCavernImpl();
@@ -193,7 +193,7 @@ public class MyCavernTest {
 		cavern.getNode(11).addNeighbour(5);
 		cavern.getNode(11).addNeighbour(10);
 
-		Stack<Long> expected = new Stack<Long>(); 
+		Stack<Long> expected = new Stack<Long>();
 		expected.push(6L);
 		expected.push(5L);
 		expected.push(4L);
@@ -202,7 +202,7 @@ public class MyCavernTest {
 		Stack<Long> output = cavern.getPath(1L,6L);
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetPathSecondStep() {
 		MyCavern cavern = new MyCavernImpl();
@@ -217,16 +217,16 @@ public class MyCavernTest {
 		cavern.getNode(2).addNeighbour(1);
 		cavern.getNode(2).addNeighbour(3);
 
-		cavern.getPath(0L,1L);		
+		cavern.getPath(0L,1L);
 		cavern.getNode(1).setVisited();
 		cavern.setLocation(1);
-		
-		Stack<Long> expected = new Stack<Long>(); 
+
+		Stack<Long> expected = new Stack<Long>();
 		expected.push(2L);
 		Stack<Long> output = output = cavern.getPath(1L,2L);
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetBestNode() {
 		MyCavern cavern = new MyCavernImpl();
@@ -240,7 +240,7 @@ public class MyCavernTest {
 		long output = cavern.getBestNode();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsSetAllPaths() {
 		MyCavern cavern = new MyCavernImpl();
@@ -277,23 +277,23 @@ public class MyCavernTest {
 		cavern.addNode(11, 1);
 		cavern.getNode(11).addNeighbour(5);
 		cavern.getNode(11).addNeighbour(10);
-		
+
 		cavern.setAllPathsTo(6);
 		cavern.printState();
-		
+
 		long expected = 2;
 		long output = cavern.getNode(1).getLastNode().getId();
 		assertEquals(expected, output);
-		
+
 		expected = 3;
 		output = cavern.getNode(7).getLastNode().getId();
 		assertEquals(expected, output);
-		
+
 		expected = 7;
 		output = cavern.getNode(8).getLastNode().getId();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsSetAllPathsFromMiddle() {
 		MyCavern cavern = new MyCavernImpl();
@@ -310,14 +310,14 @@ public class MyCavernTest {
 		cavern.getNode(3).addNeighbour(5);
 		cavern.addNode(4);
 		cavern.getNode(4).addNeighbour(3);
-		
+
 		cavern.setAllPathsTo(4);
-		
+
 		long expected = 2;
 		long output = cavern.getNode(1).getLastNode().getId();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetSize() {
 		MyCavern cavern = new MyCavernImpl();
@@ -330,4 +330,25 @@ public class MyCavernTest {
 		int output = cavern.getSize();
 		assertEquals(expected, output);
 	}
+
+	@Test
+	public void testsVisitSetsLocation() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		cavern.visit(1);
+		int expected = 5;
+		int output = cavern.getLocation();
+		assertEquals(expected, output);
+	}
+
+	@Test
+	public void testsVisitSetsVisited() {
+		MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(1);
+		cavern.visit(1);
+		boolean expected = true;
+		boolean output = cavern.getNode(1).getVisited();
+		assertEquals(expected, output);
+	}
+
 }

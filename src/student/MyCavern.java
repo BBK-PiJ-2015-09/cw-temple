@@ -103,5 +103,12 @@ public interface MyCavern {
 	 */
 	int getSize();
 
+	/**
+	 * Set location to the given id and mark the node as visited.
+	 *
+	 * @param id the id of the node to visit.
+	 */
+	void visit(long id);
+
 	void printState();
 }
