@@ -127,7 +127,7 @@ public class MyCavernImpl implements MyCavern {
 
 	@Override
 	public Stack<Long> getPath(long start, long end) {
-		MyNode minimumNode;
+		MyNode minimumNode = new MyNodeImpl(Long.MAX_VALUE);
 		MyNode currentNode;
 
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
@@ -185,8 +185,6 @@ public class MyCavernImpl implements MyCavern {
 			// get the first of the unsearched nodes as the initial minimum node
 			if(!unsearchedNodes.isEmpty()) {
 				minimumNode = unsearchedNodes.get(0);
-			} else {
-				minimumNode = new MyNodeImpl(999);
 			}
 
 			// find the unsearched node with the minimum pathlength
@@ -200,10 +198,10 @@ public class MyCavernImpl implements MyCavern {
 			currentNode = minimumNode;
 
 		}
-		return buildStack(end, start);
+		return buildPath(end, start);
 	}
 
-	private Stack<Long> buildStack(long end, long start) {
+	private Stack<Long> buildPath(long end, long start) {
 		Stack<Long> output = new Stack<Long>();
 		while(end != start) {
 			output.push(end);
