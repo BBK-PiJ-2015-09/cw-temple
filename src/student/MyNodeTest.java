@@ -14,7 +14,7 @@ public class MyNodeTest {
 		long output = node.getId();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetVisited() {
 		MyNode node = new MyNodeImpl(1, 1);
@@ -31,7 +31,7 @@ public class MyNodeTest {
 		boolean output = node.getVisited();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetDistance() {
 		MyNode node = new MyNodeImpl(1, 2);
@@ -39,7 +39,7 @@ public class MyNodeTest {
 		long output = node.getDistance();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetNeighbours() {
 		MyNode node = new MyNodeImpl(1, 1);
@@ -61,7 +61,7 @@ public class MyNodeTest {
 		long output = node.getNeighbours().size();
 		assertEquals(expected, output);
 	}
-	
+
 	@Test
 	public void testsGetPathLength() {
 		MyNode node = new MyNodeImpl(1, 1);
@@ -88,5 +88,5 @@ public class MyNodeTest {
 		MyNode output = node.getLastNode();
 		assertEquals(expected, output);
 	}
-	
+
 }

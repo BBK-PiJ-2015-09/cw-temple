@@ -46,27 +46,27 @@ public class Explorer {
 
     	// create the cavern
     	MyCavern cavern = new MyCavernImpl();
-    	
+
 		// add the node to the cavern
 		cavern.addNode(state.getCurrentLocation(), state.getDistanceToTarget());
 		MyNode node = cavern.getNode(state.getCurrentLocation());
-		
+
 		Stack<Long> path = new Stack<Long>();
-		
+
     	while(state.getDistanceToTarget() != 0)  {
-        	
+
     		// set location
     		cavern.setLocation(node.getId());
-     		
+
         	// mark as visited
         	node.setVisited();
-        	
+
         	// add any new neighbours to the cavern and the node
         	for (game.NodeStatus neighbour : state.getNeighbours()) {
         		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
         		node.addNeighbour(neighbour.getId());
         	}
-        	
+
         	if(path.isEmpty()) {
         		// get the path to the next best node
         		path = cavern.getPath(cavern.getLocation(), cavern.getBestNode());
@@ -77,7 +77,7 @@ public class Explorer {
         	state.moveTo(path.pop());
 
     	}
- 
+
         return;
 
     }
@@ -106,7 +106,7 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void escape(EscapeState state) {
-    	
+
     	// build a cavern out of the vertices
     	MyCavern cavern = new MyCavernImpl();
     	for(Node node : state.getVertices()) {
@@ -115,23 +115,23 @@ public class Explorer {
     			cavern.getNode(node.getId()).addNeighbour(neighbour.getId());
     		}
     	}
-        
+
     	// set the next step on the shortest path to the exit on each node
     	cavern.setAllPathsTo(state.getExit().getId());
-    	    	
+
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
-    	    	
+
     	if(cavern.getSize() > 20) {
 	       	while((state.getTimeRemaining()/19) > node.getPathLength())  {
 	        	// set location
 	    		cavern.setLocation(node.getId());
-	     		
+
 	        	// mark as visited
 	        	node.setVisited();
-	 
+
 	        	// get the next move towards the next unvisited node on the board
 	        	node = cavern.getNode(cavern.getNext());
-	        	
+
 	            // move towards the next unvisited node on the board
 	    		for (Node nextNode : state.getVertices()) {
 	    			if(nextNode.getId() == node.getId()) {
@@ -143,7 +143,7 @@ public class Explorer {
 	    		}
 	    	}
     	}
-    	
+
     	while(!(state.getCurrentNode() == state.getExit())) {
     		long nextId = cavern.getNode(state.getCurrentNode().getId()).getLastNode().getId();
     		for (Node nextNode : state.getVertices()) {
@@ -154,8 +154,8 @@ public class Explorer {
     				state.pickUpGold();
     			}
     		}
-    	}  	
-  
+    	}
+
     	return;
     }
 }

@@ -9,9 +9,9 @@ public class MyCavernImpl implements MyCavern {
 	private long location;
 	private Stack<Long> history = new Stack();
 	private boolean retracing = false;
-	
+
 	public MyCavernImpl() {}
-	
+
 	@Override
 	public void addNode(long id) {
 		for(MyNode node : nodes) {
@@ -22,7 +22,7 @@ public class MyCavernImpl implements MyCavern {
 		MyNode node = new MyNodeImpl(id);
 		nodes.add(node);
 	}
-	
+
 	@Override
 	public void addNode(long id, long distance) {
 		for(MyNode node : nodes) {
@@ -33,7 +33,7 @@ public class MyCavernImpl implements MyCavern {
 		MyNode node = new MyNodeImpl(id, distance);
 		nodes.add(node);
 	}
-	
+
 	@Override
 	public MyNode getNode(long id) {
 		for(MyNode node : nodes) {
@@ -43,7 +43,7 @@ public class MyCavernImpl implements MyCavern {
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void setLocation(long location) {
 		if (!retracing) {
@@ -51,17 +51,17 @@ public class MyCavernImpl implements MyCavern {
 		}
 		this.location = location;
 	}
-	
+
 	@Override
 	public long getLocation() {
 		return location;
 	}
-	
+
 	@Override
 	public int size() {
 		return nodes.size();
 	}
-	
+
 	@Override
 	public long getNext() {
 		ArrayList<Long> neighbours = getNode(location).getNeighbours();
@@ -88,7 +88,7 @@ public class MyCavernImpl implements MyCavern {
 			return getLast();
 		}
 	}
-	
+
 	@Override
 	public void setAllPathsInfinite() {
 		for(MyNode node : nodes) {
@@ -97,7 +97,7 @@ public class MyCavernImpl implements MyCavern {
 			}
 		}
 	}
-	
+
 	public void printState() {
 		for(MyNode node : nodes) {
 			node.printState();
@@ -106,13 +106,13 @@ public class MyCavernImpl implements MyCavern {
 		System.out.println("**********");
 
 	}
-	
+
 	@Override
 	public Stack<Long> getPath(long start, long end) {
 		MyNode minimumNode;
 		MyNode currentNode;
 		MyNode endNode = nodes.get(0);
-		
+
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
 		ArrayList<MyNode> nodesToRemove = new ArrayList<>();
 		ArrayList<MyNode> neighbours = new ArrayList<>();
@@ -121,35 +121,35 @@ public class MyCavernImpl implements MyCavern {
 		for(MyNode newNode : nodes) {
 			unsearchedNodes.add(newNode);
 		}
-		
+
 		// set all node paths to max
 		setAllPathsInfinite();
-		
+
 		// set currentNode to start
 		currentNode = getNode(start);
-		
+
 		// set currentNode pathlength to zero (it's the start)
 		currentNode.setPathLength(0);
-				
+
 		// loop until currentNode is the end
 		while(!unsearchedNodes.isEmpty()) {
-			
+
 			// get the neighbours of this node
 			for(long id : currentNode.getNeighbours()) {
 				neighbours.add(getNode(id));
 			}
-			
+
 			// remove any not in the unsearched set
 			for(MyNode neighbour : neighbours) {
 				if(!unsearchedNodes.contains(neighbour)) {
 					nodesToRemove.add(neighbour);
 				}
 			}
-			
+
 			for(MyNode node : nodesToRemove) {
 				neighbours.remove(node);
 			}
-			
+
 			// if the neighbour's pathlength is greater than this node's pathlength + 1:
 				// set its pathlength to pathlength + 1
 				// set the neighbour's lastNode to this node
@@ -159,9 +159,9 @@ public class MyCavernImpl implements MyCavern {
 					neighbour.setLastNode(currentNode);
 				}
 			}
-			
+
 			neighbours.clear();
-			
+
 			// remove currentNode from the set of unsearched nodes
 			unsearchedNodes.remove(currentNode);
 
@@ -171,7 +171,7 @@ public class MyCavernImpl implements MyCavern {
 			} else {
 				minimumNode = new MyNodeImpl(999);
 			}
-			
+
 			// find the unsearched node with the minimum pathlength
 			for(MyNode node : unsearchedNodes) {
 				if(node.getPathLength() < minimumNode.getPathLength()) {
@@ -181,15 +181,15 @@ public class MyCavernImpl implements MyCavern {
 
 			// set currentNode to the node with the shortest pathlength
 			currentNode = minimumNode;
-			
+
 			if(currentNode.getId() == end) {
 				endNode = currentNode;
 			}
-			
+
 		}
-		
+
 		currentNode = endNode;
-		
+
 		Stack<Long> output = new Stack<Long>();
 		while(currentNode.getId() != start) {
 			output.push(currentNode.getId());
@@ -198,7 +198,7 @@ public class MyCavernImpl implements MyCavern {
 
 		return output;
 	}
-	
+
 	@Override
 	public long getBestNode() {
 		ArrayList<MyNode> unvisitedNodes = new ArrayList<MyNode>();
@@ -207,27 +207,27 @@ public class MyCavernImpl implements MyCavern {
 				unvisitedNodes.add(node);
 			}
 		}
-		
+
 		MyNode minimumNode = unvisitedNodes.get(0);
 		for(MyNode node : unvisitedNodes) {
 			if(node.getDistance() < minimumNode.getDistance()) {
 				minimumNode = node;
 			}
 		}
-		
+
 		return minimumNode.getId();
 	}
-	
-	@Override 
+
+	@Override
 	public void setAllPathsTo(long goal) {
 		getPath(goal, nodes.get(0).getId());
 	}
-	
+
 	@Override
 	public int getSize() {
 		return nodes.size();
 	}
-	
+
 	private long getLast() {
 		if(!retracing) {
 			retracing = true;

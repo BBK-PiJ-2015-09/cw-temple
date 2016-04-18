@@ -15,7 +15,7 @@ public interface MyCavern {
 	 * @param id, the id of the node to add.
 	 */
 	void addNode(long id);
-	
+
 	/**
 	 * Adds a node to the cavern, if it is not already present.
 	 *
@@ -23,7 +23,7 @@ public interface MyCavern {
 	 * @param distance, the (straight-line) distance of the node from the goal.
 	 */
 	void addNode(long id, long distance);
-	
+
 	/**
 	 * Returns a node by its ID.
 	 *
@@ -49,14 +49,14 @@ public interface MyCavern {
 	 * @return the id of the location.
 	 */
 	long getLocation();
-	
+
 	/**
 	 * Returns the size of the cavern.
 	 *
 	 * @return the number of nodes in the cavern.
 	 */
 	int size();
-	
+
 	/**
 	 * Returns the id of the next node to move to, unvisited if possible.
 	 *
@@ -65,43 +65,43 @@ public interface MyCavern {
 	 * something is wrong if not)
 	 */
 	long getNext();
-	
+
 	/**
 	 * Set all pathlengths to infinity.
 	 */
 	void setAllPathsInfinite();
-	
+
 	/**
 	 * Return the shortest path between two nodes.
-	 * 
+	 *
 	 * @param start the id of the starting node
 	 * @param end the id of the ending node
-	 * @return a stack of the next neighbouring id to move to in order 
+	 * @return a stack of the next neighbouring id to move to in order
 	 * to reach the end node in the shortest number of steps
 	 */
 	Stack<Long> getPath(long start, long end);
-	
+
 	/**
 	 * Return the best node - ie., the node closest to the goal.
-	 * 
+	 *
 	 * @return the node with the lowest value for distance
 	 */
 	long getBestNode();
-	
+
 	/**
 	 * Find the next step from each node on the shortest path to the given destination.
 	 * Store it in the lastNode variable.
-	 * 
+	 *
 	 * @param goal the id of the node all lastNodes should work towards
 	 */
 	void setAllPathsTo(long goal);
-	
+
 	/**
 	 * Return the size of the cavern.
-	 * 
+	 *
 	 * @return an int of the number of nodes in the cavern.
 	 */
 	int getSize();
-	
+
 	void printState();
 }
