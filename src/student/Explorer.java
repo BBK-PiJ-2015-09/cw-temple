@@ -49,12 +49,8 @@ public class Explorer {
 		Stack<Long> path = new Stack<Long>();
 
     	while(state.getDistanceToTarget() != 0)  {
-
-    		// set location
-    		cavern.setLocation(node.getId());
-
-        	// mark as visited
-        	node.setVisited();
+    		
+    		visit(cavern, node);
 
         	// add any new neighbours to the cavern and the node
         	for (game.NodeStatus neighbour : state.getNeighbours()) {
@@ -111,11 +107,7 @@ public class Explorer {
 
     	if(cavern.getSize() > 20) {
 	       	while((state.getTimeRemaining()/19) > node.getPathLength())  {
-	        	// set location
-	    		cavern.setLocation(node.getId());
-
-	        	// mark as visited
-	        	node.setVisited();
+	        	visit(cavern, node);
 
 	        	// get the next move towards the next unvisited node on the board
 	        	node = cavern.getNode(cavern.getNext());
@@ -124,11 +116,17 @@ public class Explorer {
     	}
 
     	while(!(state.getCurrentNode() == state.getExit())) {
-    		long nextId = cavern.getNode(state.getCurrentNode().getId()).getLastNode().getId();
+    		long currentId = state.getCurrentNode().getId();
+    		long nextId = cavern.getNode(currentId).getLastNode().getId();
     		makeEscapeMove(state, nextId);
     	}
 
     	return;
+    }
+    
+    private void visit(MyCavern cavern, MyNode node) {
+		cavern.setLocation(node.getId());
+    	node.setVisited();
     }
     
     private void makeEscapeMove(EscapeState state, long id) {
@@ -153,7 +151,6 @@ public class Explorer {
     }
     
     private MyCavern buildEscapeCavern(EscapeState state) {
-    	// build a cavern out of the vertices
     	MyCavern cavern = new MyCavernImpl();
     	for(Node node : state.getVertices()) {
     		cavern.addNode(node.getId());
