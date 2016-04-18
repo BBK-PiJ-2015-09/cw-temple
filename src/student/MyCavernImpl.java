@@ -129,7 +129,6 @@ public class MyCavernImpl implements MyCavern {
 	public Stack<Long> getPath(long start, long end) {
 		MyNode minimumNode;
 		MyNode currentNode;
-		MyNode endNode = nodes.get(0);
 
 		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
 		ArrayList<MyNode> nodesToRemove = new ArrayList<>();
@@ -200,20 +199,16 @@ public class MyCavernImpl implements MyCavern {
 			// set currentNode to the node with the shortest pathlength
 			currentNode = minimumNode;
 
-			if(currentNode.getId() == end) {
-				endNode = currentNode;
-			}
-
 		}
+		return buildStack(end, start);
+	}
 
-		currentNode = endNode;
-
+	private Stack<Long> buildStack(long end, long start) {
 		Stack<Long> output = new Stack<Long>();
-		while(currentNode.getId() != start) {
-			output.push(currentNode.getId());
-			currentNode = currentNode.getLastNode();
+		while(end != start) {
+			output.push(end);
+			end = getNode(end).getLastNode().getId();
 		}
-
 		return output;
 	}
 
