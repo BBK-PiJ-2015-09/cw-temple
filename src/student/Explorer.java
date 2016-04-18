@@ -43,7 +43,7 @@ public class Explorer {
     public void explore(ExplorationState state) {
 
     	// create the cavern
-    	MyCavern cavern = new MyCavernImpl();
+    	MyCavern cavern = buildCavern();
 
 		// add the node to the cavern
 		cavern.addNode(state.getCurrentLocation(), state.getDistanceToTarget());
@@ -53,11 +53,7 @@ public class Explorer {
 
     	while(state.getDistanceToTarget() != 0)  {
 
-    		// set location
-    		cavern.setLocation(node.getId());
-
-        	// mark as visited
-        	node.setVisited();
+			cavern.visit(node.getId());
 
         	// add any new neighbours to the cavern and the node
         	for (game.NodeStatus neighbour : state.getNeighbours()) {
@@ -106,7 +102,8 @@ public class Explorer {
     public void escape(EscapeState state) {
 
     	// build a cavern out of the vertices
-    	MyCavern cavern = new MyCavernImpl();
+    	MyCavern cavern = buildCavern();
+
     	for(Node node : state.getVertices()) {
     		cavern.addNode(node.getId());
     		for(Node neighbour : node.getNeighbours()) {
@@ -121,11 +118,8 @@ public class Explorer {
 
     	if(cavern.getSize() > 20) {
 	       	while((state.getTimeRemaining()/19) > node.getPathLength())  {
-	        	// set location
-	    		cavern.setLocation(node.getId());
 
-	        	// mark as visited
-	        	node.setVisited();
+				cavern.visit(node.getId());
 
 	        	// get the next move towards the next unvisited node on the board
 	        	node = cavern.getNode(cavern.getNext());
@@ -135,9 +129,7 @@ public class Explorer {
 	    			if(nextNode.getId() == node.getId()) {
 	    				state.moveTo(nextNode);
 	    			}
-	    			if (state.getCurrentNode().getTile().getGold() > 0) {
-	    				state.pickUpGold();
-	    			}
+	    			getGold(state);
 	    		}
 	    	}
     	}
@@ -148,12 +140,20 @@ public class Explorer {
     			if(nextNode.getId() == nextId) {
     				state.moveTo(nextNode);
     			}
-    			if (state.getCurrentNode().getTile().getGold() > 0) {
-    				state.pickUpGold();
-    			}
+    			getGold(state);
     		}
     	}
 
     	return;
     }
+
+	private MyCavern buildCavern() {
+		return new MyCavernImpl();
+	}
+
+	private void getGold(EscapeState state) {
+		if (state.getCurrentNode().getTile().getGold() > 0) {
+			state.pickUpGold();
+		}
+	}
 }
