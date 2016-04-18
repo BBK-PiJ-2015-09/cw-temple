@@ -45,28 +45,14 @@ public class Explorer {
 		MyNode node = cavern.getNode(state.getCurrentLocation());
 		Stack<Long> path = new Stack<Long>();
 
-    	while(state.getDistanceToTarget() != 0)  {
+    	while(state.getDistanceToTarget() > 0)  {
     		visit(cavern, node);
     		addNeighbours(state, cavern, node);
-    		
         	if(path.isEmpty()) {
-        		// get the path to the next best node
         		path = cavern.getPath(cavern.getLocation(), cavern.getBestNode());
         	}
-
-            // move towards the next unvisited node on the board
         	node = cavern.getNode(path.peek());
         	state.moveTo(path.pop());
-
-    	}
-
-        return;
-    }
-
-    private void addNeighbours(ExplorationState state, MyCavern cavern, MyNode node) {
-    	for (game.NodeStatus neighbour : state.getNeighbours()) {
-    		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
-    		node.addNeighbour(neighbour.getId());
     	}
     }
     
@@ -94,31 +80,36 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void escape(EscapeState state) {
-
     	MyCavern cavern = buildEscapeCavern(state);
-
-    	// set the next step on the shortest path to the exit on each node
-    	cavern.setAllPathsTo(state.getExit().getId());
-
     	MyNode node = cavern.getNode(state.getCurrentNode().getId());
-
+    	cavern.setAllPathsTo(state.getExit().getId());
+    	searchForGold(state, cavern, node);
+    	goToExit(state, cavern);
+    }
+    
+    private void searchForGold(EscapeState state, MyCavern cavern, MyNode node) {
     	if(cavern.getSize() > 20) {
 	       	while((state.getTimeRemaining()/19) > node.getPathLength())  {
 	        	visit(cavern, node);
-
-	        	// get the next move towards the next unvisited node on the board
 	        	node = cavern.getNode(cavern.getNext());
 	        	makeEscapeMove(state, node.getId());
 	    	}
     	}
-
+    }
+    
+    private void goToExit(EscapeState state, MyCavern cavern) {
     	while(!(state.getCurrentNode() == state.getExit())) {
     		long currentId = state.getCurrentNode().getId();
     		long nextId = cavern.getNode(currentId).getLastNode().getId();
     		makeEscapeMove(state, nextId);
     	}
+    }
 
-    	return;
+    private void addNeighbours(ExplorationState state, MyCavern cavern, MyNode node) {
+    	for (game.NodeStatus neighbour : state.getNeighbours()) {
+    		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
+    		node.addNeighbour(neighbour.getId());
+    	}
     }
     
     private void visit(MyCavern cavern, MyNode node) {
