@@ -42,11 +42,8 @@ public class Explorer {
      */
     public void explore(ExplorationState state) {
 
-    	// create the cavern
-    	MyCavern cavern = new MyCavernImpl();
-
-		// add the node to the cavern
-		cavern.addNode(state.getCurrentLocation(), state.getDistanceToTarget());
+		MyCavern cavern = buildExploreCavern(state);
+		
 		MyNode node = cavern.getNode(state.getCurrentLocation());
 
 		Stack<Long> path = new Stack<Long>();
@@ -105,14 +102,7 @@ public class Explorer {
      */
     public void escape(EscapeState state) {
 
-    	// build a cavern out of the vertices
-    	MyCavern cavern = new MyCavernImpl();
-    	for(Node node : state.getVertices()) {
-    		cavern.addNode(node.getId());
-    		for(Node neighbour : node.getNeighbours()) {
-    			cavern.getNode(node.getId()).addNeighbour(neighbour.getId());
-    		}
-    	}
+    	MyCavern cavern = buildEscapeCavern(state);
 
     	// set the next step on the shortest path to the exit on each node
     	cavern.setAllPathsTo(state.getExit().getId());
@@ -155,5 +145,23 @@ public class Explorer {
     	}
 
     	return;
+    }
+    
+    private MyCavern buildExploreCavern(ExplorationState state) {
+    	MyCavern cavern = new MyCavernImpl();
+		cavern.addNode(state.getCurrentLocation(), state.getDistanceToTarget());
+		return cavern;
+    }
+    
+    private MyCavern buildEscapeCavern(EscapeState state) {
+    	// build a cavern out of the vertices
+    	MyCavern cavern = new MyCavernImpl();
+    	for(Node node : state.getVertices()) {
+    		cavern.addNode(node.getId());
+    		for(Node neighbour : node.getNeighbours()) {
+    			cavern.getNode(node.getId()).addNeighbour(neighbour.getId());
+    		}
+    	}
+    	return cavern;
     }
 }
