@@ -336,8 +336,8 @@ public class MyCavernTest {
 		MyCavern cavern = new MyCavernImpl();
 		cavern.addNode(1);
 		cavern.visit(1);
-		int expected = 5;
-		int output = cavern.getLocation();
+		long expected = 1;
+		long output = cavern.getLocation();
 		assertEquals(expected, output);
 	}
 
