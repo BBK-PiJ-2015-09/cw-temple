@@ -2,13 +2,11 @@ package student;
 
 import student.MyNode;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 import game.EscapeState;
 import game.ExplorationState;
 import game.Node;
-
 
 public class Explorer {
 
@@ -159,4 +157,3 @@ public class Explorer {
     	return;
     }
 }
-
