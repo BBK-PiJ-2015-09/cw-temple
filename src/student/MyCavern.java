@@ -58,7 +58,8 @@ public interface MyCavern {
 	int size();
 
 	/**
-	 * Returns the id of the next node to move to, unvisited if possible.
+	 * Returns the id of the next neighbouring node to move to according to lowest distance. 
+	 * Will retrace through its history if it hits a dead end.
 	 *
 	 * @return the next id to move to.
 	 * @throws NoSuchElementException if id is not found (I always expect to find it,

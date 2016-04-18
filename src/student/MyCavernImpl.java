@@ -63,31 +63,50 @@ public class MyCavernImpl implements MyCavern {
 
 	@Override
 	public long getNext() {
-		ArrayList<Long> neighbours = getNode(location).getNeighbours();
+		ArrayList<MyNode> options = addNewNeighbours();
+		if(!options.isEmpty()) {
+			stopRetracing();
+			return getNearest(options);
+		} else {
+			startRetracing();
+			return getLast();
+		}
+	}
+
+	private long getNearest(ArrayList<MyNode> nodes) {
+		MyNode nearest = nodes.get(0);
+		for(MyNode node : nodes) {
+			if(node.getDistance() < nearest.getDistance()) {
+				nearest = node;
+			}
+		}
+		return nearest.getId();
+	}
+	
+	private void startRetracing() {
+		if(!retracing) {
+			retracing = true;
+		}
+	}
+	
+	private void stopRetracing() {
+		if(retracing) {
+			retracing = false;
+		}
+	}
+	
+	private ArrayList<MyNode> addNewNeighbours() {
 		ArrayList<MyNode> options = new ArrayList<>();
 		MyNode neighbour;
-		for(long id : neighbours) {
+		for(long id : getNode(location).getNeighbours()) {
 			neighbour = getNode(id);
 			if(neighbour.getVisited() == false) {
 				options.add(neighbour);
 			}
 		}
-		if(!options.isEmpty()) {
-			if(retracing) {
-				retracing = false;
-			}
-			MyNode output = options.get(0);
-			for(MyNode option : options) {
-				if(option.getDistance() < output.getDistance()) {
-					output = option;
-				}
-			}
-			return output.getId();
-		} else {
-			return getLast();
-		}
+		return options;
 	}
-
+	
 	@Override
 	public void setAllPathsInfinite() {
 		for(MyNode node : nodes) {
@@ -228,9 +247,6 @@ public class MyCavernImpl implements MyCavern {
 	}
 	
 	private long getLast() {
-		if(!retracing) {
-			retracing = true;
-		}
 		return history.pop();
 	}
 
