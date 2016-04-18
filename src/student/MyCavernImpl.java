@@ -125,19 +125,21 @@ public class MyCavernImpl implements MyCavern {
 
 	}
 
+	private ArrayList<MyNode> buildUnsearched() {
+		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
+		for(MyNode newNode : nodes) {
+			unsearchedNodes.add(newNode);
+		}
+		return unsearchedNodes;
+	}
+
 	@Override
 	public Stack<Long> getPath(long start, long end) {
 		MyNode minimumNode = new MyNodeImpl(Long.MAX_VALUE);
 		MyNode currentNode;
-
-		ArrayList<MyNode> unsearchedNodes = new ArrayList<>();
+		ArrayList<MyNode> unsearchedNodes = buildUnsearched();
 		ArrayList<MyNode> nodesToRemove = new ArrayList<>();
 		ArrayList<MyNode> neighbours = new ArrayList<>();
-
-		// add all nodes to unsearched set
-		for(MyNode newNode : nodes) {
-			unsearchedNodes.add(newNode);
-		}
 
 		// set all node paths to max
 		setAllPathsInfinite();
@@ -162,21 +164,11 @@ public class MyCavernImpl implements MyCavern {
 					nodesToRemove.add(neighbour);
 				}
 			}
-
 			for(MyNode node : nodesToRemove) {
 				neighbours.remove(node);
 			}
 
-			// if the neighbour's pathlength is greater than this node's pathlength + 1:
-				// set its pathlength to pathlength + 1
-				// set the neighbour's lastNode to this node
-			for(MyNode neighbour : neighbours) {
-				if(neighbour.getPathLength() > (currentNode.getPathLength() + 1)) {
-					neighbour.setPathLength(currentNode.getPathLength() + 1);
-					neighbour.setLastNode(currentNode);
-				}
-			}
-
+			setNeighbouringPaths(neighbours, currentNode);
 			neighbours.clear();
 
 			// remove currentNode from the set of unsearched nodes
@@ -199,6 +191,18 @@ public class MyCavernImpl implements MyCavern {
 
 		}
 		return buildPath(end, start);
+	}
+
+	private void setNeighbouringPaths(ArrayList<MyNode> neighbours, MyNode currentNode) {
+		for(MyNode neighbour : neighbours) {
+			// if the neighbour's pathlength is greater than this node's pathlength + 1:
+			if(neighbour.getPathLength() > (currentNode.getPathLength() + 1)) {
+				// set its pathlength to pathlength + 1
+				neighbour.setPathLength(currentNode.getPathLength() + 1);
+				// set the neighbour's lastNode to this node
+				neighbour.setLastNode(currentNode);
+			}
+		}
 	}
 
 	private Stack<Long> buildPath(long end, long start) {
