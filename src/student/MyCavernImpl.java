@@ -82,19 +82,19 @@ public class MyCavernImpl implements MyCavern {
 		}
 		return nearest.getId();
 	}
-	
+
 	private void startRetracing() {
 		if(!retracing) {
 			retracing = true;
 		}
 	}
-	
+
 	private void stopRetracing() {
 		if(retracing) {
 			retracing = false;
 		}
 	}
-	
+
 	private ArrayList<MyNode> addNewNeighbours() {
 		ArrayList<MyNode> options = new ArrayList<>();
 		MyNode neighbour;
@@ -106,7 +106,7 @@ public class MyCavernImpl implements MyCavern {
 		}
 		return options;
 	}
-	
+
 	@Override
 	public void setAllPathsInfinite() {
 		for(MyNode node : nodes) {
@@ -225,15 +225,7 @@ public class MyCavernImpl implements MyCavern {
 				unvisitedNodes.add(node);
 			}
 		}
-
-		MyNode minimumNode = unvisitedNodes.get(0);
-		for(MyNode node : unvisitedNodes) {
-			if(node.getDistance() < minimumNode.getDistance()) {
-				minimumNode = node;
-			}
-		}
-
-		return minimumNode.getId();
+		return getNearest(unvisitedNodes);
 	}
 
 	@Override
@@ -245,7 +237,7 @@ public class MyCavernImpl implements MyCavern {
 	public int getSize() {
 		return nodes.size();
 	}
-	
+
 	private long getLast() {
 		return history.pop();
 	}
