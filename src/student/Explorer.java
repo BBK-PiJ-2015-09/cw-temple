@@ -41,23 +41,14 @@ public class Explorer {
      * @param state the information available at the current state
      */
     public void explore(ExplorationState state) {
-
 		MyCavern cavern = buildExploreCavern(state);
-		
 		MyNode node = cavern.getNode(state.getCurrentLocation());
-
 		Stack<Long> path = new Stack<Long>();
 
     	while(state.getDistanceToTarget() != 0)  {
-    		
     		visit(cavern, node);
-
-        	// add any new neighbours to the cavern and the node
-        	for (game.NodeStatus neighbour : state.getNeighbours()) {
-        		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
-        		node.addNeighbour(neighbour.getId());
-        	}
-
+    		addNeighbours(state, cavern, node);
+    		
         	if(path.isEmpty()) {
         		// get the path to the next best node
         		path = cavern.getPath(cavern.getLocation(), cavern.getBestNode());
@@ -70,9 +61,15 @@ public class Explorer {
     	}
 
         return;
-
     }
 
+    private void addNeighbours(ExplorationState state, MyCavern cavern, MyNode node) {
+    	for (game.NodeStatus neighbour : state.getNeighbours()) {
+    		cavern.addNode(neighbour.getId(), neighbour.getDistanceToTarget());
+    		node.addNeighbour(neighbour.getId());
+    	}
+    }
+    
     /**
      * Escape from the cavern before the ceiling collapses, trying to collect as much
      * gold as possible along the way. Your solution must ALWAYS escape before time runs
